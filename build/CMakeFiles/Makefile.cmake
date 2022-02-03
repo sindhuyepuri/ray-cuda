@@ -24,6 +24,8 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/opt/homebrew/Cellar/cmake/3.22.0/share/cmake/Modules/CMakeLanguageInformation.cmake"
   "/opt/homebrew/Cellar/cmake/3.22.0/share/cmake/Modules/CMakeSystemSpecificInformation.cmake"
   "/opt/homebrew/Cellar/cmake/3.22.0/share/cmake/Modules/CMakeSystemSpecificInitialize.cmake"
+  "/opt/homebrew/Cellar/cmake/3.22.0/share/cmake/Modules/CheckFunctionExists.cmake"
+  "/opt/homebrew/Cellar/cmake/3.22.0/share/cmake/Modules/CheckLibraryExists.cmake"
   "/opt/homebrew/Cellar/cmake/3.22.0/share/cmake/Modules/Compiler/AppleClang-C.cmake"
   "/opt/homebrew/Cellar/cmake/3.22.0/share/cmake/Modules/Compiler/AppleClang-CXX.cmake"
   "/opt/homebrew/Cellar/cmake/3.22.0/share/cmake/Modules/Compiler/CMakeCommonCompilerMacros.cmake"

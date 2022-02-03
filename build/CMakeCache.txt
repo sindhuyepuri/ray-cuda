@@ -305,16 +305,16 @@ X11_SM_INCLUDE_PATH:PATH=X11_SM_INCLUDE_PATH-NOTFOUND
 X11_SM_LIB:FILEPATH=X11_SM_LIB-NOTFOUND
 
 //Path to a file.
-X11_X11_INCLUDE_PATH:PATH=X11_X11_INCLUDE_PATH-NOTFOUND
+X11_X11_INCLUDE_PATH:PATH=/opt/homebrew/include
 
 //Path to a library.
-X11_X11_LIB:FILEPATH=X11_X11_LIB-NOTFOUND
+X11_X11_LIB:FILEPATH=/opt/homebrew/lib/libX11.dylib
 
 //Path to a file.
-X11_X11_xcb_INCLUDE_PATH:PATH=X11_X11_xcb_INCLUDE_PATH-NOTFOUND
+X11_X11_xcb_INCLUDE_PATH:PATH=/opt/homebrew/include
 
 //Path to a library.
-X11_X11_xcb_LIB:FILEPATH=X11_X11_xcb_LIB-NOTFOUND
+X11_X11_xcb_LIB:FILEPATH=/opt/homebrew/lib/libX11-xcb.dylib
 
 //Path to a file.
 X11_XRes_INCLUDE_PATH:PATH=X11_XRes_INCLUDE_PATH-NOTFOUND
@@ -332,13 +332,13 @@ X11_XSync_INCLUDE_PATH:PATH=X11_XSync_INCLUDE_PATH-NOTFOUND
 X11_Xaccessrules_INCLUDE_PATH:PATH=X11_Xaccessrules_INCLUDE_PATH-NOTFOUND
 
 //Path to a file.
-X11_Xaccessstr_INCLUDE_PATH:PATH=X11_Xaccessstr_INCLUDE_PATH-NOTFOUND
+X11_Xaccessstr_INCLUDE_PATH:PATH=/opt/homebrew/include
 
 //Path to a file.
-X11_Xau_INCLUDE_PATH:PATH=X11_Xau_INCLUDE_PATH-NOTFOUND
+X11_Xau_INCLUDE_PATH:PATH=/opt/homebrew/include
 
 //Path to a library.
-X11_Xau_LIB:FILEPATH=X11_Xau_LIB-NOTFOUND
+X11_Xau_LIB:FILEPATH=/opt/homebrew/lib/libXau.dylib
 
 //Path to a file.
 X11_Xaw_INCLUDE_PATH:PATH=X11_Xaw_INCLUDE_PATH-NOTFOUND
@@ -365,10 +365,10 @@ X11_Xdamage_INCLUDE_PATH:PATH=X11_Xdamage_INCLUDE_PATH-NOTFOUND
 X11_Xdamage_LIB:FILEPATH=X11_Xdamage_LIB-NOTFOUND
 
 //Path to a file.
-X11_Xdmcp_INCLUDE_PATH:PATH=X11_Xdmcp_INCLUDE_PATH-NOTFOUND
+X11_Xdmcp_INCLUDE_PATH:PATH=/opt/homebrew/include
 
 //Path to a library.
-X11_Xdmcp_LIB:FILEPATH=X11_Xdmcp_LIB-NOTFOUND
+X11_Xdmcp_LIB:FILEPATH=/opt/homebrew/lib/libXdmcp.dylib
 
 //Path to a file.
 X11_Xext_INCLUDE_PATH:PATH=X11_Xext_INCLUDE_PATH-NOTFOUND
@@ -401,13 +401,13 @@ X11_Xinerama_INCLUDE_PATH:PATH=X11_Xinerama_INCLUDE_PATH-NOTFOUND
 X11_Xinerama_LIB:FILEPATH=X11_Xinerama_LIB-NOTFOUND
 
 //Path to a file.
-X11_Xkb_INCLUDE_PATH:PATH=X11_Xkb_INCLUDE_PATH-NOTFOUND
+X11_Xkb_INCLUDE_PATH:PATH=/opt/homebrew/include
 
 //Path to a file.
-X11_Xkblib_INCLUDE_PATH:PATH=X11_Xkblib_INCLUDE_PATH-NOTFOUND
+X11_Xkblib_INCLUDE_PATH:PATH=/opt/homebrew/include
 
 //Path to a file.
-X11_Xlib_INCLUDE_PATH:PATH=X11_Xlib_INCLUDE_PATH-NOTFOUND
+X11_Xlib_INCLUDE_PATH:PATH=/opt/homebrew/include
 
 //Path to a file.
 X11_Xmu_INCLUDE_PATH:PATH=X11_Xmu_INCLUDE_PATH-NOTFOUND
@@ -455,7 +455,7 @@ X11_Xtst_INCLUDE_PATH:PATH=X11_Xtst_INCLUDE_PATH-NOTFOUND
 X11_Xtst_LIB:FILEPATH=X11_Xtst_LIB-NOTFOUND
 
 //Path to a file.
-X11_Xutil_INCLUDE_PATH:PATH=X11_Xutil_INCLUDE_PATH-NOTFOUND
+X11_Xutil_INCLUDE_PATH:PATH=/opt/homebrew/include
 
 //Path to a file.
 X11_Xv_INCLUDE_PATH:PATH=X11_Xv_INCLUDE_PATH-NOTFOUND
@@ -479,10 +479,10 @@ X11_Xxf86vm_LIB:FILEPATH=X11_Xxf86vm_LIB-NOTFOUND
 X11_dpms_INCLUDE_PATH:PATH=X11_dpms_INCLUDE_PATH-NOTFOUND
 
 //Path to a file.
-X11_xcb_INCLUDE_PATH:PATH=X11_xcb_INCLUDE_PATH-NOTFOUND
+X11_xcb_INCLUDE_PATH:PATH=/opt/homebrew/include
 
 //Path to a library.
-X11_xcb_LIB:FILEPATH=X11_xcb_LIB-NOTFOUND
+X11_xcb_LIB:FILEPATH=/opt/homebrew/lib/libxcb.dylib
 
 //Path to a file.
 X11_xcb_icccm_INCLUDE_PATH:PATH=X11_xcb_icccm_INCLUDE_PATH-NOTFOUND
@@ -497,13 +497,13 @@ X11_xcb_util_INCLUDE_PATH:PATH=X11_xcb_util_INCLUDE_PATH-NOTFOUND
 X11_xcb_util_LIB:FILEPATH=X11_xcb_util_LIB-NOTFOUND
 
 //Path to a file.
-X11_xcb_xfixes_INCLUDE_PATH:PATH=X11_xcb_xfixes_INCLUDE_PATH-NOTFOUND
+X11_xcb_xfixes_INCLUDE_PATH:PATH=/opt/homebrew/include
 
 //Path to a library.
-X11_xcb_xfixes_LIB:FILEPATH=X11_xcb_xfixes_LIB-NOTFOUND
+X11_xcb_xfixes_LIB:FILEPATH=/opt/homebrew/lib/libxcb-xfixes.dylib
 
 //Path to a library.
-X11_xcb_xkb_LIB:FILEPATH=X11_xcb_xkb_LIB-NOTFOUND
+X11_xcb_xkb_LIB:FILEPATH=/opt/homebrew/lib/libxcb-xkb.dylib
 
 //Path to a file.
 X11_xkbcommon_INCLUDE_PATH:PATH=X11_xkbcommon_INCLUDE_PATH-NOTFOUND
@@ -609,6 +609,14 @@ CMAKE_GENERATOR_INSTANCE:INTERNAL=
 CMAKE_GENERATOR_PLATFORM:INTERNAL=
 //Name of generator toolset.
 CMAKE_GENERATOR_TOOLSET:INTERNAL=
+//Have function connect
+CMAKE_HAVE_CONNECT:INTERNAL=1
+//Have function gethostbyname
+CMAKE_HAVE_GETHOSTBYNAME:INTERNAL=1
+//Have function remove
+CMAKE_HAVE_REMOVE:INTERNAL=1
+//Have function shmat
+CMAKE_HAVE_SHMAT:INTERNAL=1
 //Source directory with the top level CMakeLists.txt file for this
 // project
 CMAKE_HOME_DIRECTORY:INTERNAL=/Users/sindhu/Downloads/ray
@@ -682,6 +690,8 @@ FIND_PACKAGE_MESSAGE_DETAILS_JPEG:INTERNAL=[/opt/homebrew/lib/libjpeg.dylib][/Li
 FIND_PACKAGE_MESSAGE_DETAILS_OpenGL:INTERNAL=[/Library/Developer/CommandLineTools/SDKs/MacOSX12.0.sdk/System/Library/Frameworks/OpenGL.framework][/Library/Developer/CommandLineTools/SDKs/MacOSX12.0.sdk/System/Library/Frameworks/OpenGL.framework][c ][v()]
 //Details about finding PNG
 FIND_PACKAGE_MESSAGE_DETAILS_PNG:INTERNAL=[/opt/homebrew/lib/libpng.dylib][/Library/Frameworks/Mono.framework/Headers][v1.4.12()]
+//Details about finding X11
+FIND_PACKAGE_MESSAGE_DETAILS_X11:INTERNAL=[/opt/homebrew/include][/opt/homebrew/lib/libX11.dylib][c ][v()]
 //Details about finding ZLIB
 FIND_PACKAGE_MESSAGE_DETAILS_ZLIB:INTERNAL=[/Library/Developer/CommandLineTools/SDKs/MacOSX12.0.sdk/usr/lib/libz.tbd][/Library/Developer/CommandLineTools/SDKs/MacOSX12.0.sdk/usr/include][v1.2.11()]
 //ADVANCED property for variable: FLTK_BASE_LIBRARY_DEBUG
@@ -724,6 +734,8 @@ PNG_PNG_INCLUDE_DIR-ADVANCED:INTERNAL=1
 X11_ICE_INCLUDE_PATH-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: X11_ICE_LIB
 X11_ICE_LIB-ADVANCED:INTERNAL=1
+//Have library /opt/homebrew/lib/libX11.dylib
+X11_LIB_X11_SOLO:INTERNAL=1
 //ADVANCED property for variable: X11_SM_INCLUDE_PATH
 X11_SM_INCLUDE_PATH-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: X11_SM_LIB
