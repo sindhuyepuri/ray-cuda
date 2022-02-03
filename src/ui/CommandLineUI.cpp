@@ -70,9 +70,11 @@ CommandLineUI::CommandLineUI(int argc, char** argv) : TraceUI()
 int CommandLineUI::run()
 {
 	assert(raytracer != 0);
+	std::cout << "loading scene" << std::endl;
 	raytracer->loadScene(rayName);
 
 	if (raytracer->sceneLoaded()) {
+
 		int width = m_nSize;
 		int height = (int)(width / raytracer->aspectRatio() + 0.5);
 
@@ -92,7 +94,6 @@ int CommandLineUI::run()
 
 		// save image
 		unsigned char* buf;
-
 		raytracer->getBuffer(buf, width, height);
 
 		if (buf)

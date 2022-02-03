@@ -26,7 +26,7 @@ extern TraceUI* traceUI;
 // Use this variable to decide if you want to print out
 // debugging messages.  Gets set in the "trace single ray" mode
 // in TraceGLWindow, for example.
-bool debugMode = false;
+bool debugMode = true;
 
 // Trace a top-level ray through pixel(i,j), i.e. normalized window coordinates (x,y),
 // through the projection plane, and out into the scene.  All we do is
@@ -216,6 +216,12 @@ void RayTracer::traceImage(int w, int h)
 {
 	// Always call traceSetup before rendering anything.
 	traceSetup(w,h);
+
+	for (int i = 0; i < w; i++) {
+		for (int j = 0; j < h; j++) {
+			setPixel(i, j, tracePixel(i, j));
+		}
+	}
 
 	// YOUR CODE HERE
 	// FIXME: Start one or more threads for ray tracing

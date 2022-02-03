@@ -97,8 +97,36 @@ bool TrimeshFace::intersectLocal(ray& r, isect& i) const
 	//
 	// FIXME: Add ray-trimesh intersection
 	
+	float num = this->dist - glm::dot(this->normal, ray->getPosition());
+	float den = glm::dot(this->normal, ray->getDirection());
+	float t = num/den;
 
-	return false;
+	glm::dvec3 a_coords = this->parent->vertices[this->ids[0]];
+	glm::dvec3 b_coords = this->parent->vertices[this->ids[1]];
+	glm::dvec3 c_coords = this->parent->vertices[this->ids[2]];
+	glm::dvec3 i_coords = ray->getPosition() + t * ray->getDirection();
+
+	// glm::dvec3 vab = (b_coords - a_coords);
+	// glm::dvec3 vai = (i_coords - a_coords);
+	// if (glm::cross(vab, vai) < 0) return false; 
+
+	// glm::dvec3 vbc = (c_coords - b_coords);
+	// glm::dvec3 vbq = (i_coords - b_coords);
+	// if (glm::cross(vbc, vbq) < 0) return false;
+
+	// glm::dvec3 vca = (a_coords - c_coords);
+	// glm::dvec3 vcq = (i_coords - c_coords);
+	// if (glm::cross(vca, vcq) < 0) return false;
+
+	glm::dvec3 vab = (b_coords - a_coords);
+	glm::dvec3 vac = (c_coords - a_coords);
+	float abc_area = glm::cross(vab, vac) / 2;
+	float alpha = (glm::cross(vbc, vbq)/2) / abc_area;
+	float beta = (glm::cross(vca, vcq)/2) / abc_area;
+
+	i->setT(t);
+	i->setUVCoordinates(glm::dvec2(alpha, beta));
+	return true;
 }
 
 // Once all the verts and faces are loaded, per vertex normals can be

@@ -47,7 +47,6 @@ void GraphicalUI::cb_load_scene(Fl_Menu_* o, void* v)
 
 	if (newfile != NULL) {
 		char buf[256];
-
 		if (pUI->raytracer->loadScene(newfile)) {
 			print(buf, "Ray <%s>", newfile);
 			stopTracing();	// terminate the previous rendering
