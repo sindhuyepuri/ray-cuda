@@ -20,6 +20,7 @@ int TraceUI::rayCount[MAX_THREADS];
 // event handling overhead.
 int main(int argc, char** argv)
 {
+	// std::cout << "graphics mode" << std::endl;
 	if (argc != 1) {
 		// text mode
 		traceUI = new CommandLineUI(argc, argv);

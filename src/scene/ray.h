@@ -79,7 +79,7 @@ public:
 	// Get/Set Time of flight
 	void setT(double tt) { t = tt; }
 	double getT() const { return t; }
-	// Get/Set surface normal at this intersection.
+	// Get/Set surface normal at this intersectivon.
 	void setN(const glm::dvec3& n) { N = n; }
 	glm::dvec3 getN() const { return N; }
 

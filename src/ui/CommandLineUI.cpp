@@ -70,7 +70,7 @@ CommandLineUI::CommandLineUI(int argc, char** argv) : TraceUI()
 int CommandLineUI::run()
 {
 	assert(raytracer != 0);
-	std::cout << "loading scene" << std::endl;
+	// std::cout << "loading scene" << std::endl;
 	raytracer->loadScene(rayName);
 
 	if (raytracer->sceneLoaded()) {
