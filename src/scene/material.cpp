@@ -44,7 +44,7 @@ glm::dvec3 Material::shade(Scene* scene, const ray& r, const isect& i) const
 	// 		.
 	// 		.
 	// 		.did 
-	// }
+	// 
 
 	glm::dvec3 i_coords = r.getPosition() + r.getDirection() * i.getT();
 
@@ -54,35 +54,22 @@ glm::dvec3 Material::shade(Scene* scene, const ray& r, const isect& i) const
 	return_light += scene->ambient() * ka(i);
 
 	for (const auto& pLight : scene->getAllLights()) {
-
 		glm::dvec3 vec_l = pLight->getDirection(i_coords);
 		glm::dvec3 vec_n = i.getN();
-		glm::dvec3 vec_r = vec_l - 2 * glm::dot(vec_l, vec_n) * vec_n; 
-		glm::dvec3 vec_v = scene->getCamera().getV();
+		glm::dvec3 vec_r = glm::reflect(vec_l, vec_n);
+		glm::dvec3 vec_v = r.getDirection();
 		
 		double dist_atten = pLight->distanceAttenuation(i_coords);
 		glm::dvec3 shadow_atten = pLight->shadowAttenuation(r, i_coords);
 
 		glm::dvec3 diffuse = kd(i) * glm::max(0.0, glm::dot(vec_n, vec_l));
-		glm::dvec3 specular = ks(i) * glm::max(0.0, glm::dot(vec_v, vec_r));
-		glm::dvec3 emissive = ke(i);
-
-		return_light += dist_atten * (diffuse + specular) + emissive;
-
-		// std::cout << vec_n << std::endl;
-
-		// return_light += dist_atten * shadow_atten * (diffuse + specular) + emissive;
-		
-		// glm::dvec3 vec_l = pLight->getDirection(i_coords);
-		// glm::dvec3 vec_r = vec_l - 2 * glm::dot(vec_l, i.getN()) * i.getN();
-		// return_light += pLight->distanceAttenuation(i_coords) * kd(i) * pLight->shadowAttenuation(r, i_coords) * 
-		// 					glm::max(glm::dot(vec_l, i.getN()), 0.0);
-		// return_light += pLight->distanceAttenuation(i_coords) * ks(i) * pLight->shadowAttenuation(r, i_coords) * 
-		// 					glm::max(glm::dot(vec_r, scene->getCamera().getV()), 0.0);
-		// return_light += ke(i); // emissive
+		glm::dvec3 specular = ks(i) * (glm::pow(glm::max(0.0, glm::dot(vec_v, vec_r)), shininess(i)));
+		return_light += dist_atten * (diffuse + specular);
 	}
 
-	// return kd(i);	
+	//emissive light
+	return_light += ke(i);
+
 	return return_light;
 }
 
