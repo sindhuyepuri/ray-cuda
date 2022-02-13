@@ -128,11 +128,9 @@ bool TrimeshFace::intersectLocal(ray& r, isect& i) const
 
 	glm::dvec3 vib = (b_coords - i_coords);
 	glm::dvec3 vic = (c_coords - i_coords);
-	double alpha = (glm::length(glm::cross(vib, vic)) * 0.5) / abc_area;
 
+	double alpha = (glm::length(glm::cross(vib, vic)) * 0.5) / abc_area;
 	double beta = (glm::length(glm::cross(vai, vac)) * 0.5) / abc_area;
-	// double alpha = (glm::length(glm::cross(vbc, vbi)) * 0.5) / abc_area;
-	// double beta = (glm::length(glm::cross(vca, vci)) * 0.5) / abc_area;
 
 	i.setT(t);
 	i.setUVCoordinates(glm::dvec2(alpha, beta));
@@ -143,12 +141,25 @@ bool TrimeshFace::intersectLocal(ray& r, isect& i) const
 		glm::dvec3 normalA = parent->normals[ids[0]];
 		glm::dvec3 normalB = parent->normals[ids[1]];
 		glm::dvec3 normalC = parent->normals[ids[2]];
-		i.setN(normal);
+
 		// alpha + beta + gamma = 1
-		// i.setN(alpha * normalA + beta * normalB + (1 - (alpha + beta)) * normalC);
+		i.setN(alpha * normalA + beta * normalB + (1 - (alpha + beta)) * normalC);
 	} else {
 		i.setN(normal);
 	}
+
+	if (!parent->materials.empty()) {
+		Material matA = *parent->materials[ids[0]];
+		Material matB = *parent->materials[ids[1]];
+		Material matC = *parent->materials[ids[2]];
+		Material m;
+		m += alpha * matA;
+		m += beta * matB;
+		m += (1 - (alpha + beta)) * matC;
+		i.setMaterial(m);
+	}
+
+
 
 	return true;
 }

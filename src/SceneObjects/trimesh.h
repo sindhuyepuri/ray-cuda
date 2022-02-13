@@ -24,7 +24,9 @@ class Trimesh : public MaterialSceneObject {
 
 	Vertices vertices;
 	Faces faces;
+	// per-vertex normals
 	Normals normals;
+	// per-vertex materials
 	Materials materials;
 	BoundingBox localBounds;
 
