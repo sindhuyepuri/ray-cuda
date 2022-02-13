@@ -3,8 +3,11 @@
 #include <float.h>
 #include <string.h>
 #include <algorithm>
+#include <iostream>
 #include <cmath>
 #include "../ui/TraceUI.h"
+#include "glm/gtx/string_cast.hpp"
+
 extern TraceUI* traceUI;
 
 using namespace std;
@@ -136,13 +139,16 @@ bool TrimeshFace::intersectLocal(ray& r, isect& i) const
 	i.setMaterial(getMaterial());
 
 	// Phong Interpolation (calculate and set normal)
-	parent->generateNormals();
-	glm::dvec3 normalA = parent->normals[ids[0]];
-	glm::dvec3 normalB = parent->normals[ids[1]];
-	glm::dvec3 normalC = parent->normals[ids[2]];
-
-	// alpha + beta + gamma = 1
-	i.setN(alpha * normalA + beta * normalB + (1 - (alpha + beta)) * normalC);
+	if (parent->vertNorms) {
+		glm::dvec3 normalA = parent->normals[ids[0]];
+		glm::dvec3 normalB = parent->normals[ids[1]];
+		glm::dvec3 normalC = parent->normals[ids[2]];
+		i.setN(normal);
+		// alpha + beta + gamma = 1
+		// i.setN(alpha * normalA + beta * normalB + (1 - (alpha + beta)) * normalC);
+	} else {
+		i.setN(normal);
+	}
 
 	return true;
 }

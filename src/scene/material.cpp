@@ -3,7 +3,7 @@
 #include "light.h"
 #include "ray.h"
 extern TraceUI* traceUI;
-
+#include "glm/gtx/string_cast.hpp"
 #include <glm/gtx/io.hpp>
 #include <iostream>
 #include "../fileio/images.h"
@@ -113,10 +113,12 @@ glm::dvec3 TextureMap::getPixelAt(int x, int y) const
 
 glm::dvec3 MaterialParameter::value(const isect& is) const
 {
-	if (0 != _textureMap)
+	if (0 != _textureMap) {
 		return _textureMap->getMappedValue(is.getUVCoordinates());
-	else
+	}
+	else {
 		return _value;
+	}
 }
 
 double MaterialParameter::intensityValue(const isect& is) const
