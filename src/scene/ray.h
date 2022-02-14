@@ -31,7 +31,7 @@ public:
 	enum RayType { VISIBILITY, REFLECTION, REFRACTION, SHADOW };
 
 	ray(const glm::dvec3& pp, const glm::dvec3& dd, const glm::dvec3& w,
-	    RayType tt = VISIBILITY);
+	    RayType tt = VISIBILITY); // position, direction, attenuation, and type
 	ray(const ray& other);
 	~ray();
 

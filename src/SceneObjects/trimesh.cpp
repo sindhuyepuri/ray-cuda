@@ -103,6 +103,7 @@ bool TrimeshFace::intersectLocal(ray& r, isect& i) const
 	float num = dist - glm::dot(normal, r.getPosition());
 	float den = glm::dot(normal, r.getDirection());
 	double t = num/den;
+	if (t < 0) return false;
 
 	glm::dvec3 a_coords = parent->vertices[ids[0]];
 	glm::dvec3 b_coords = parent->vertices[ids[1]];

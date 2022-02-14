@@ -60,11 +60,11 @@ glm::dvec3 Material::shade(Scene* scene, const ray& r, const isect& i) const
 		glm::dvec3 vec_v = r.getDirection();
 		
 		double dist_atten = pLight->distanceAttenuation(i_coords);
-		glm::dvec3 shadow_atten = pLight->shadowAttenuation(r, i_coords);
+		glm::dvec3 shadow_atten = pLight->shadowAttenuation(r, i_coords + vec_n * .0001); // r is ignored lol
 
 		glm::dvec3 diffuse = kd(i) * glm::max(0.0, glm::dot(vec_n, vec_l));
 		glm::dvec3 specular = ks(i) * (glm::pow(glm::max(0.0, glm::dot(-vec_v, vec_r)), shininess(i)));
-		return_light += dist_atten * (diffuse + specular);
+		return_light += shadow_atten * dist_atten * (diffuse + specular);
 	}
 
 	//emissive light

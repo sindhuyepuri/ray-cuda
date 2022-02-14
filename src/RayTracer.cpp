@@ -16,6 +16,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtx/io.hpp>
 #include <string.h> // for memset
+#include <thread>
 
 #include <iostream>
 #include <fstream>
@@ -217,11 +218,14 @@ void RayTracer::traceImage(int w, int h)
 	// Always call traceSetup before rendering anything.
 	traceSetup(w,h);
 
-	for (int i = 0; i < w; i++) {
-		for (int j = 0; j < h; j++) {
-			tracePixel(i, j);
+	//thread([w, h, this] () {
+		for (int i = 0; i < w; i++) {
+			for (int j = 0; j < h; j++) {
+				tracePixel(i, j);
+			}
 		}
-	}
+	//});
+	
 	std::cout << "finished loop" << std::endl;
 	// YOUR CODE HERE
 	// FIXME: Start one or more threads for ray tracing
