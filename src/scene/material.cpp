@@ -58,7 +58,7 @@ glm::dvec3 Material::shade(Scene* scene, const ray& r, const isect& i) const
 		glm::dvec3 vec_n = i.getN();
 		glm::dvec3 vec_r = glm::reflect(-vec_l, vec_n);
 		glm::dvec3 vec_v = r.getDirection();
-		
+
 		double dist_atten = pLight->distanceAttenuation(i_coords);
 		glm::dvec3 shadow_atten = pLight->shadowAttenuation(r, i_coords + vec_n * .0001); // r is ignored lol
 

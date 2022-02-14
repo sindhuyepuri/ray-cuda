@@ -95,6 +95,15 @@ glm::dvec3 RayTracer::traceRay(ray& r, const glm::dvec3& thresh, int depth, doub
 		const Material& m = i.getMaterial();
 		colorC = m.shade(scene.get(), r, i);
 
+		// add reflection contribution
+		// reflect the incoming ray across the normal
+		// make sure direction of reflected ray is outgoing
+		// call trace ray on new reflected ray until desired depth is achieved
+		// not sure what thresh and t are doing
+
+		// reflected_ray(r.at(i.getT()), -1 * r.getDirection(), (1, 1, 1), ray::RayType::REFRACTION)
+		// colorC += m.kr(i) * traceRay(reflected_ray, thresh(?), depth + 1, t (?));
+		
 	} else {
 		// No intersection.  This ray travels to infinity, so we color
 		// it according to the background color, which in this (simple) case
@@ -218,15 +227,15 @@ void RayTracer::traceImage(int w, int h)
 	// Always call traceSetup before rendering anything.
 	traceSetup(w,h);
 
-	//thread([w, h, this] () {
+	std::thread([w, h, this] () {
 		for (int i = 0; i < w; i++) {
 			for (int j = 0; j < h; j++) {
 				tracePixel(i, j);
 			}
 		}
-	//});
+	});
 	
-	std::cout << "finished loop" << std::endl;
+		std::cout << "finished loop" << std::endl;
 	// YOUR CODE HERE
 	// FIXME: Start one or more threads for ray tracing
 	//
