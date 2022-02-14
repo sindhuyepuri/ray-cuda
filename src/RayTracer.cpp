@@ -244,6 +244,29 @@ int RayTracer::aaImage()
 	//
 	// TIP: samples and aaThresh have been synchronized with TraceUI by
 	//      RayTracer::traceSetup() function
+	// std::cout << samples << std::endl;
+	for (int i = 0; i < buffer_width; i++) {
+		for (int j = 0; j < buffer_height; j++) {
+			int num_samples = 0;
+			glm::dvec3 final_col(0, 0, 0);
+			double incr = 1.0/double(samples);
+			// std::cout << incr << std::endl;
+			for (double i_incr = 0.0; i_incr < 1.0; i_incr += incr) {
+				for (double j_incr = 0.0; j_incr < 1.0; j_incr += incr) {
+					//std::cout << i_incr << " " << j_incr << std::endl;
+					num_samples++;
+					glm::dvec3 col(0,0,0);
+
+					double x = (double(i) + i_incr)/double(buffer_width);
+					double y = (double(j) + j_incr)/double(buffer_height);
+					col = trace(x, y);
+
+					final_col = (final_col * double(num_samples - 1) + col) / double(num_samples);
+				}
+			}
+			setPixel(i, j, final_col);
+		}
+	}
 	return 0;
 }
 
