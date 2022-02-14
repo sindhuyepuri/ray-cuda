@@ -100,9 +100,14 @@ glm::dvec3 RayTracer::traceRay(ray& r, const glm::dvec3& thresh, int depth, doub
 		// make sure direction of reflected ray is outgoing
 		// call trace ray on new reflected ray until desired depth is achieved
 		// not sure what thresh and t are doing
-
-		// reflected_ray(r.at(i.getT()), -1 * r.getDirection(), (1, 1, 1), ray::RayType::REFRACTION)
-		// colorC += m.kr(i) * traceRay(reflected_ray, thresh(?), depth + 1, t (?));
+		if (depth > 0) {
+			glm::dvec3 w_in = r.getDirection();
+			glm::dvec3 n = i.getN();
+			glm::dvec3 reflect_vec(w_in - 2.0 * (glm::dot(w_in, n) * n));
+			ray reflected_ray(r.at(i.getT()), reflect_vec, glm::dvec3(1, 1, 1), ray::RayType::REFRACTION);
+			colorC += m.kr(i) * traceRay(reflected_ray, thresh, depth - 1, t); // what are thresh and t for?
+			// std::cout << "kr: " << m.kr(i) << std::endl;
+		}
 		
 	} else {
 		// No intersection.  This ray travels to infinity, so we color
@@ -118,6 +123,7 @@ glm::dvec3 RayTracer::traceRay(ray& r, const glm::dvec3& thresh, int depth, doub
 #if VERBOSE
 	std::cerr << "== depth: " << depth+1 << " done, returning: " << colorC << std::endl;
 #endif
+	// std::cout << "depth: " << depth << " colorc: " << colorC << std::endl;
 	return colorC;
 }
 
@@ -227,13 +233,13 @@ void RayTracer::traceImage(int w, int h)
 	// Always call traceSetup before rendering anything.
 	traceSetup(w,h);
 
-	std::thread([w, h, this] () {
+	// std::thread([w, h, this] () {
 		for (int i = 0; i < w; i++) {
 			for (int j = 0; j < h; j++) {
 				tracePixel(i, j);
 			}
 		}
-	});
+	// });
 	
 		std::cout << "finished loop" << std::endl;
 	// YOUR CODE HERE
