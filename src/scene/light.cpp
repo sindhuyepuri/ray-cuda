@@ -22,7 +22,12 @@ glm::dvec3 DirectionalLight::shadowAttenuation(const ray& r, const glm::dvec3& p
 {
 	// YOUR CODE HERE:
 	// You should implement shadow-handling code here.
-	return glm::dvec3(1.0, 1.0, 1.0);
+	isect i;
+	if (scene->intersect(r, i)) {
+		return glm::dvec3(0,0,0);
+	}
+	return glm::dvec3(1,1,1);
+
 }
 
 glm::dvec3 DirectionalLight::getColor() const
