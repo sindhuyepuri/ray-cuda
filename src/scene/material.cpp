@@ -48,7 +48,7 @@ glm::dvec3 Material::shade(Scene* scene, const ray& r, const isect& i) const
 
 	glm::dvec3 i_coords = r.getPosition() + r.getDirection() * i.getT();
 
-	glm::dvec3 return_light;
+	glm::dvec3 return_light(0.0, 0.0, 0.0);
 
 	// TODO : verify lighting model
 	return_light += scene->ambient() * ka(i);

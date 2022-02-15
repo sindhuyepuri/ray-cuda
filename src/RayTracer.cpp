@@ -74,7 +74,7 @@ glm::dvec3 RayTracer::tracePixel(int i, int j)
 glm::dvec3 RayTracer::traceRay(ray& r, const glm::dvec3& thresh, int depth, double& t )
 {
 	isect i;
-	glm::dvec3 colorC;
+	glm::dvec3 colorC(0.0, 0.0, 0.0);
 
 #if VERBOSE
 	std::cerr << "== current depth: " << depth << std::endl;
@@ -149,7 +149,6 @@ glm::dvec3 RayTracer::traceRay(ray& r, const glm::dvec3& thresh, int depth, doub
 #if VERBOSE
 	std::cerr << "== depth: " << depth+1 << " done, returning: " << colorC << std::endl;
 #endif
-	// std::cout << "depth: " << depth << " colorc: " << colorC << std::endl;
 	return colorC;
 }
 
