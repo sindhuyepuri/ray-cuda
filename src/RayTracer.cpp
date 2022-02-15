@@ -80,7 +80,7 @@ glm::dvec3 RayTracer::traceRay(ray& r, const glm::dvec3& thresh, int depth, doub
 	std::cerr << "== current depth: " << depth << std::endl;
 #endif
 
-	if(scene->intersect(r, i)) {
+	if(depth >= 0 && scene->intersect(r, i)) {
 		// YOUR CODE HERE
 
 		// An intersection occurred!  We've got work to do.  For now,
@@ -104,9 +104,35 @@ glm::dvec3 RayTracer::traceRay(ray& r, const glm::dvec3& thresh, int depth, doub
 			glm::dvec3 w_in = r.getDirection();
 			glm::dvec3 n = i.getN();
 			glm::dvec3 reflect_vec(w_in - 2.0 * (glm::dot(w_in, n) * n));
-			ray reflected_ray(r.at(i.getT()), reflect_vec, glm::dvec3(1, 1, 1), ray::RayType::REFRACTION);
+			ray reflected_ray(r.at(i.getT()), reflect_vec, glm::dvec3(1, 1, 1), ray::RayType::REFLECTION);
 			colorC += m.kr(i) * traceRay(reflected_ray, thresh, depth - 1, t); // what are thresh and t for?
 			// std::cout << "kr: " << m.kr(i) << std::endl;
+		}
+
+		// add refraction contribution
+		// if the material is not translucent, continue
+		glm::dvec3 normal = i.getN();
+		glm::dvec3 incident = r.getDirection();
+		double n_i;
+		double n_t;
+		if (glm::dot(normal, incident) > 0) { // entering
+			n_i = 1.0003;
+			n_t = m.index(i);
+		} else { // exiting
+			n_i = m.index(i);
+			n_t = 1.0003;
+			normal = -1.0 * normal;
+		}
+		double curly_n = n_i/n_t;
+		double c_1 = glm::dot(normal, incident);
+		double c_2_sqrd = 1 - glm::pow(curly_n, 2.0) * (1 - glm::pow(c_1, 2.0));
+		if (c_2_sqrd >= 0) {
+			double c_2 = glm::sqrt(c_2_sqrd);
+			glm::dvec3 trans_vec = glm::normalize(curly_n * incident + (curly_n * c_1 - c_2) * normal);
+			double mis_length = glm::length(curly_n * (incident + c_1 * normal));
+			// glm::dvec3 t_vec = curly_n * incident + (curly_n * c_1 - glm::sqrt(1 - glm::pow(mis_length, 2.0))) * normal;
+			ray refracted_ray(r.at(i.getT()), glm::normalize(trans_vec), glm::dvec3(1, 1, 1), ray::RayType::REFRACTION);
+			colorC += m.kt(i) * traceRay(refracted_ray, thresh, depth - 1, t);
 		}
 		
 	} else {

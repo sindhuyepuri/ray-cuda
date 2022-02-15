@@ -88,7 +88,7 @@ glm::dvec3 PointLight::shadowAttenuation(const ray& r, const glm::dvec3& p) cons
 	double current_dist = 0; // isect_point -> light distance (start as zero so we enter the while loop)
 	double original_dist = glm::distance(p, position); // distance between intersection point and light
 	glm::dvec3 atten (1, 1, 1); 
-	double epsilon = .0001;
+	double epsilon = .001;
 	ray shadow_ray(p, getDirection(p), glm::dvec3(1, 1, 1), ray::RayType::SHADOW);
 	glm::dvec3 current_pos = p;
 
