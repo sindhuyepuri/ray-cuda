@@ -16,6 +16,6 @@ public:
     KdTree* right;
     BoundingBox* objectBounds;
     bool isLeaf;
-    void build();
+    void build(int depth);
     bool get_intersection(ray& r, isect& i);
 };

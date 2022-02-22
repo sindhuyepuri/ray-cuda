@@ -2,9 +2,7 @@
 #include "scene.h"
 #include <float.h>
 
-void KdTree::build() {
-    // sort(typename Obj::beginObjects(), Obj::endObjects(), Obj::getBoundingBox().getMin());
-    
+void KdTree::build(int depth) {
     // Step 1: partition the elements into halves
     //         -> whether that is arbitrarily or through sort
     //            we should be decreasing the objects.size() for each subtree
@@ -17,6 +15,11 @@ void KdTree::build() {
     std::vector<Geometry*> right_objects;
 
     objectBounds = new BoundingBox(glm::dvec3(DBL_MAX, DBL_MAX, DBL_MAX), glm::dvec3(DBL_MIN, DBL_MIN, DBL_MIN));
+
+    // sort the objects along the specified axis (depth % 3)
+    sort(objects.begin(), objects.end(), [depth](Geometry* a, Geometry* b) -> bool {
+        return a->getBoundingBox().getMin()[depth % 3] > b->getBoundingBox().getMin()[depth % 3];
+    });
 
     // if (!objects.empty()) {
     //     std::cout << objects.size() << std::endl;
@@ -45,8 +48,8 @@ void KdTree::build() {
 
     left->objects = left_objects;
     right->objects = right_objects;
-    left->build();
-    right->build();
+    left->build(depth + 1);
+    right->build(depth + 1);
 }
 
 bool KdTree::get_intersection(ray& r, isect& i) {
