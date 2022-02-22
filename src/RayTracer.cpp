@@ -266,7 +266,6 @@ void RayTracer::traceImage(int w, int h)
 		}
 	// });
 	
-		std::cout << "finished loop" << std::endl;
 	// YOUR CODE HERE
 	// FIXME: Start one or more threads for ray tracing
 	//

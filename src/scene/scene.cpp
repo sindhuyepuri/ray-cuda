@@ -116,6 +116,8 @@ bool Scene::intersect(ray& r, isect& i) const {
 	double tmin = 0.0;
 	double tmax = 0.0;
 	bool have_one = false;
+	KdTree<Geometry>* tree;
+	tree->build();
 	for(const auto& obj : objects) {
 		isect cur;
 		if( obj->intersect(r, cur) ) {
