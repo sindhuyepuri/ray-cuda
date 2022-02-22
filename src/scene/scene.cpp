@@ -120,18 +120,18 @@ bool Scene::intersect(ray& r, isect& i) const {
 	KdTree* tree = new KdTree();
 	tree->objects = objects;
 	tree->build();
-	// KdTree<Geometry>* tree;
-	// tree->build();
-	// tree->objects = objects;
-	for(const auto& obj : objects) {
-		isect cur;
-		if( obj->intersect(r, cur) ) {
-			if(!have_one || (cur.getT() < i.getT())) {
-				i = cur;
-				have_one = true;
-			}
-		}
-	}
+	have_one = tree->get_intersection(r, i); // also sets isect
+
+	// for(const auto& obj : objects) {
+	// 	isect cur;
+	// 	if( obj->intersect(r, cur) ) {
+	// 		if(!have_one || (cur.getT() < i.getT())) {
+	// 			i = cur;
+	// 			have_one = true;
+	// 		}
+	// 	}
+	// }
+
 	if(!have_one)
 		i.setT(1000.0);
 	// if debugging,

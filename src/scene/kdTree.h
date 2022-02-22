@@ -3,6 +3,7 @@
 // #include "scene.h"
 #include "bbox.h"
 #include <vector>
+#include "ray.h"
 
 class Geometry;
 
@@ -16,4 +17,5 @@ public:
     BoundingBox* objectBounds;
     bool isLeaf;
     void build();
+    bool get_intersection(ray& r, isect& i);
 };

@@ -18,9 +18,9 @@ void KdTree::build() {
 
     objectBounds = new BoundingBox(glm::dvec3(DBL_MAX, DBL_MAX, DBL_MAX), glm::dvec3(DBL_MIN, DBL_MIN, DBL_MIN));
 
-    if (!objects.empty()) {
-        std::cout << objects.size() << std::endl;
-    }
+    // if (!objects.empty()) {
+    //     std::cout << objects.size() << std::endl;
+    // }
 
     if (objects.size() <= 1) {
         isLeaf = true;
@@ -28,7 +28,7 @@ void KdTree::build() {
     }
 
     int midpoint = objects.size()/2;
-    std::cout << midpoint << std::endl;
+    // std::cout << midpoint << std::endl;
 
     for(int i = 0; i < objects.size(); i++) {
         objectBounds->merge(objects[i]->getBoundingBox());
@@ -47,4 +47,9 @@ void KdTree::build() {
     right->objects = right_objects;
     left->build();
     right->build();
+}
+
+bool KdTree::get_intersection(ray& r, isect& i) {
+    if (isLeaf) return objects[0]->intersect(r, i);
+    return left->get_intersection(r, i) || right->get_intersection(r, i);
 }
