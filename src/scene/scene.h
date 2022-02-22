@@ -21,6 +21,7 @@
 #include "material.h"
 #include "ray.h"
 
+
 #include <glm/geometric.hpp>
 #include <glm/mat3x3.hpp>
 #include <glm/mat4x4.hpp>
@@ -33,7 +34,7 @@ using std::unique_ptr;
 class Light;
 class Scene;
 
-template <typename Obj>
+// template <typename Obj>
 class KdTree;
 
 class SceneElement {
@@ -266,7 +267,7 @@ public:
 
 
 private:
-	std::vector<std::unique_ptr<Geometry>> objects;
+	std::vector<Geometry*> objects;
 	std::vector<std::unique_ptr<Light>> lights;
 	Camera camera;
 
@@ -284,7 +285,8 @@ private:
 	// are exempt from this requirement.
 	BoundingBox sceneBounds;
 
-	KdTree<Geometry>* kdtree;
+	KdTree* kdtree;
+	// KdTree<Geometry>* kdtree;
 
 	mutable std::mutex intersectionCacheMutex;
 
