@@ -17,6 +17,7 @@
 #include <glm/gtx/io.hpp>
 #include <string.h> // for memset
 #include <thread>
+#include <pthread.h>
 
 #include <iostream>
 #include <fstream>
@@ -146,7 +147,8 @@ glm::dvec3 RayTracer::traceRay(ray& r, const glm::dvec3& thresh, int depth, doub
 		//       and enabled.
 		if (traceUI->cubeMap()) {
 			CubeMap* cubeMap = traceUI->getCubeMap();
-			colorC = cubeMap->getColor();
+			colorC = cubeMap->getColor(r);
+			// std::cout << "cubemap" << std::endl;
 		} else {
 			colorC = glm::dvec3(0.0, 0.0, 0.0);
 		}
@@ -262,15 +264,30 @@ void RayTracer::traceImage(int w, int h)
 {
 	// Always call traceSetup before rendering anything.
 	traceSetup(w,h);
-
-	// std::thread([w, h, this] () {
-		for (int i = 0; i < w; i++) {
-			for (int j = 0; j < h; j++) {
-				tracePixel(i, j);
+	// vector container stores threads
+    // Looping every thread via for_each
+    // The 3rd argument assigns a task
+    // It tells the compiler we're using lambda ([])
+    // The lambda function takes its argument as a reference to a thread, t
+    // Then, joins one by one, and this works like barrier
+    // std::for_each(workers.begin(), workers.end(), [](std::thread &t) 
+    // {
+    //     t.join();
+    // });
+	std::vector<std::thread> workers;
+	for (int id = 1; id <= 16; id++) {
+		workers.push_back(std::thread([id, w, h, this] () {
+			for (int i = 0; i < w/16; i++) {
+				for (int j = 0; j < h; j++) {
+					this->tracePixel(i*16+id, j);
+				}
 			}
-		}
-	// });
-	
+		}));
+	}
+	std::for_each(workers.begin(), workers.end(), [](std::thread &t) 
+    {
+        t.join();
+    });
 	// YOUR CODE HERE
 	// FIXME: Start one or more threads for ray tracing
 	//

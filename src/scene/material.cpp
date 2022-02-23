@@ -105,10 +105,10 @@ glm::dvec3 TextureMap::getMappedValue(const glm::dvec2& coord) const
 	double x = coord[0] * getWidth();
 	double y = coord[1] * getHeight();
 	
-	glm::dvec3 a_11 = getPixelAt(std::floor(x), std::floor(y));
-	glm::dvec3 a_12 = getPixelAt(std::floor(x), std::ceil(y));
-	glm::dvec3 a_21 = getPixelAt(std::ceil(x), std::floor(y));
-	glm::dvec3 a_22 = getPixelAt(std::ceil(x), std::ceil(y));
+	glm::dvec3 a_11 = 1/256.0 * getPixelAt(std::floor(x), std::floor(y));
+	glm::dvec3 a_12 = 1/256.0 * getPixelAt(std::floor(x), std::ceil(y));
+	glm::dvec3 a_21 = 1/256.0 * getPixelAt(std::ceil(x), std::floor(y));
+	glm::dvec3 a_22 = 1/256.0 * getPixelAt(std::ceil(x), std::ceil(y));
 
 	return (1 - v) * ((1 - u) * a_11 + u * a_21) + v * ((1 - u) * a_21 + u * a_22);
 	// return getPixelAt((int)u, (int)v);
