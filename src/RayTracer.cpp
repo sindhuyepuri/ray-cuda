@@ -250,6 +250,9 @@ void RayTracer::traceSetup(int w, int h)
 
 	// YOUR CODE HERE
 	// FIXME: Additional initializations
+	scene->kdtree = new KdTree<Geometry>();
+	scene->kdtree->objects = scene->objects;
+	scene->kdtree->build(0);
 }
 
 /*
@@ -276,21 +279,27 @@ void RayTracer::traceImage(int w, int h)
     // {
     //     t.join();
     // });
-	std::cout << "trace image" << std::endl;
-	std::vector<std::thread> workers;
-	for (int id = 1; id <= 16; id++) {
-		workers.push_back(std::thread([id, w, h, this] () {
-			for (int i = 0; i < w/16; i++) {
-				for (int j = 0; j < h; j++) {
-					this->tracePixel(i*16+id, j);
-				}
-			}
-		}));
+
+	for (int i = 0; i < w; i++) {
+		for (int j = 0; j < h; j++) {
+			tracePixel(i, j);
+		}
 	}
-	std::for_each(workers.begin(), workers.end(), [](std::thread &t) 
-    {
-        t.join();
-    });
+	// std::cout << "trace image" << std::endl;
+	// std::vector<std::thread> workers;
+	// for (int id = 1; id <= 16; id++) {
+	// 	workers.push_back(std::thread([id, w, h, this] () {
+	// 		for (int i = 0; i < w/16; i++) {
+	// 			for (int j = 0; j < h; j++) {
+	// 				this->tracePixel(i*16+id, j);
+	// 			}
+	// 		}
+	// 	}));
+	// }
+	// std::for_each(workers.begin(), workers.end(), [](std::thread &t) 
+    // {
+    //     t.join();
+    // });
 	// YOUR CODE HERE
 	// FIXME: Start one or more threads for ray tracing
 	//
@@ -301,6 +310,42 @@ void RayTracer::traceImage(int w, int h)
 	//       while rendering.
 }
 
+std::vector<std::pair<int, int>> aliased_pixels;
+
+double max_dist = DBL_MIN;
+
+bool RayTracer::findAliasedPixel(int i, int j) {
+	int num_pixels = 0;
+	unsigned char *curr_pixel = buffer.data() + ( i + j * buffer_width ) * 3;
+	glm::dvec3 curr_color(curr_pixel[0], curr_pixel[1], curr_pixel[2]);
+
+	glm::dvec3 avg_color(0.0, 0.0, 0.0);
+	for (int x = i - 1; x <= i + 1; x++) {
+		for (int y = j - 1; y <= j + 1; y++) {
+			if (x >= 0 && x < buffer_width && y >= 0 && y < buffer_height) {
+				num_pixels++;
+				unsigned char *pixel = buffer.data() + ( x + y * buffer_width ) * 3;
+				avg_color += glm::dvec3(pixel[0], pixel[1], pixel[2]);
+			}
+		}
+	}
+
+	avg_color = 1/((double)num_pixels) * avg_color;
+
+	double dist = glm::distance(1/256.0 * curr_color, 1/256.0 * avg_color);
+	if (dist > max_dist) {
+		max_dist = dist;
+	}
+	std::cout << dist << std::endl;
+	if (glm::distance(1/256.0 * curr_color, 1/256.0 * avg_color) > .1) {
+		std::cout << dist << std::endl;
+		std::pair <int, int> pixel (i, j);
+		aliased_pixels.push_back(pixel);
+		return true;
+	}
+	return false;
+}
+
 int RayTracer::aaImage()
 {
 	// YOUR CODE HERE
@@ -308,12 +353,20 @@ int RayTracer::aaImage()
 	//
 	// TIP: samples and aaThresh have been synchronized with TraceUI by
 	//      RayTracer::traceSetup() function
-	// std::cout << samples << std::endl;
 	for (int i = 0; i < buffer_width; i++) {
 		for (int j = 0; j < buffer_height; j++) {
-			setPixel(i, j, aaPixel(i, j, 0, 1));
+			if(findAliasedPixel(i, j)) {
+				setPixel(i, j, glm::dvec3(1, 1, 1));
+			} else {
+				setPixel(i, j, glm::dvec3(0, 0, 0));
+			}
 		}
 	}
+	// std::cout << max_dist << std::endl;
+	// for (std::pair<int, int> &element : aliased_pixels) {
+	// 	setPixel(element.first, element.second, aaPixel(element.first, element.second, 0, 1));
+	// }
+
 	return 0;
 }
 

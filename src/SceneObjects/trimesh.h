@@ -58,6 +58,8 @@ public:
 
 	bool hasBoundingBoxCapability() const { return true; }
 
+	virtual void BuildKdTree();
+	
 	BoundingBox ComputeLocalBoundingBox()
 	{
 		BoundingBox localbounds;
@@ -82,6 +84,7 @@ protected:
 	                 bool actualTextures) const;
 	mutable int displayListWithMaterials;
 	mutable int displayListWithoutMaterials;
+	KdTree<TrimeshFace>* kdtree;
 };
 
 class TrimeshFace : public MaterialSceneObject {

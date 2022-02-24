@@ -34,7 +34,7 @@ using std::unique_ptr;
 class Light;
 class Scene;
 
-// template <typename Obj>
+template <typename T>
 class KdTree;
 
 class SceneElement {
@@ -154,6 +154,8 @@ public:
 
 	virtual void ComputeBoundingBox();
 
+	virtual void BuildKdTree() { return; }
+
 	// default method for ComputeLocalBoundingBox returns a bogus bounding
 	// box;
 	// this should be overridden if hasBoundingBoxCapability() is true.
@@ -265,9 +267,10 @@ public:
 
 	const BoundingBox& bounds() const { return sceneBounds; }
 
+	KdTree<Geometry>* kdtree;
+	std::vector<Geometry*> objects;
 
 private:
-	std::vector<Geometry*> objects;
 	std::vector<std::unique_ptr<Light>> lights;
 	Camera camera;
 
@@ -285,7 +288,6 @@ private:
 	// are exempt from this requirement.
 	BoundingBox sceneBounds;
 
-	KdTree* kdtree;
 	// KdTree<Geometry>* kdtree;
 
 	mutable std::mutex intersectionCacheMutex;

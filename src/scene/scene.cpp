@@ -117,10 +117,10 @@ bool Scene::intersect(ray& r, isect& i) const {
 	double tmax = 0.0;
 	bool have_one = false;
 	
-	KdTree* tree = new KdTree();
-	tree->objects = objects;
-	tree->build(0);
-	have_one = tree->get_intersection(r, i); // also sets isect
+	
+	// kdtree->traverse_tree(tree, 0);
+	// std::cout << objects.size() << std::endl;
+	have_one = kdtree->get_intersection(r, i); // also sets isect
 
 	// for(const auto& obj : objects) {
 	// 	isect cur;

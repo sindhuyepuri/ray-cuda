@@ -69,18 +69,26 @@ const char* Trimesh::doubleCheck()
 	return 0;
 }
 
+void Trimesh::BuildKdTree() {
+	kdtree->objects = faces;
+	kdtree->build(0);
+}
+
 bool Trimesh::intersectLocal(ray& r, isect& i) const
 {
 	bool have_one = false;
-	for (auto face : faces) {
-		isect cur;
-		if (face->intersectLocal(r, cur)) {
-			if (!have_one || (cur.getT() < i.getT())) {
-				i = cur;
-				have_one = true;
-			}
-		}
-	}
+
+	have_one = kdtree->get_intersection(r, i); // also sets isect
+
+	// for (auto face : faces) {
+	// 	isect cur;
+	// 	if (face->intersectLocal(r, cur)) {
+	// 		if (!have_one || (cur.getT() < i.getT())) {
+	// 			i = cur;
+	// 			have_one = true;
+	// 		}
+	// 	}
+	// }
 	if (!have_one)
 		i.setT(1000.0);
 	return have_one;
