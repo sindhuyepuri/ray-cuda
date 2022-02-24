@@ -18,7 +18,7 @@ glm::dvec3 CubeMap::getColor(ray r) const
 		// Face with highest dot product btw ray and normal
 	// 2. Intersect with the face
 	// 3. Get color based on getMappedCoordinates() of intersection
-
+	// std::cout << "segfault" << std::endl;
 	glm::dvec3 ray_dir = r.getDirection();
 	double x = ray_dir[0];
 	double y = ray_dir[1];

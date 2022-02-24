@@ -15,6 +15,8 @@
 #include <algorithm>
 #include <glm/glm.hpp>
 #include <glm/gtx/io.hpp>
+#include "glm/gtx/string_cast.hpp"
+
 #include <string.h> // for memset
 #include <thread>
 #include <pthread.h>
@@ -274,6 +276,7 @@ void RayTracer::traceImage(int w, int h)
     // {
     //     t.join();
     // });
+	std::cout << "trace image" << std::endl;
 	std::vector<std::thread> workers;
 	for (int id = 1; id <= 16; id++) {
 		workers.push_back(std::thread([id, w, h, this] () {
@@ -308,27 +311,40 @@ int RayTracer::aaImage()
 	// std::cout << samples << std::endl;
 	for (int i = 0; i < buffer_width; i++) {
 		for (int j = 0; j < buffer_height; j++) {
-			int num_samples = 0;
-			glm::dvec3 final_col(0, 0, 0);
-			double incr = 1.0/double(samples);
-			// std::cout << incr << std::endl;
-			for (double i_incr = 0.0; i_incr < 1.0; i_incr += incr) {
-				for (double j_incr = 0.0; j_incr < 1.0; j_incr += incr) {
-					//std::cout << i_incr << " " << j_incr << std::endl;
-					num_samples++;
-					glm::dvec3 col(0,0,0);
-
-					double x = (double(i) + i_incr)/double(buffer_width);
-					double y = (double(j) + j_incr)/double(buffer_height);
-					col = trace(x, y);
-
-					final_col = (final_col * double(num_samples - 1) + col) / double(num_samples);
-				}
-			}
-			setPixel(i, j, final_col);
+			setPixel(i, j, aaPixel(i, j, 0, 1));
 		}
 	}
 	return 0;
+}
+
+// recurses until the difference between the original color and the antialiased color is less than thresh
+glm::dvec3 RayTracer::aaPixel (double i, double j, int depth, double pixel_width) {
+	glm::dvec3 initial_col = trace(i / double(buffer_width), j / double(buffer_height));
+	glm::dvec3 final_col(0, 0, 0);
+	double incr = pixel_width/double(samples);
+
+	for (double i_incr = 0.0; i_incr < pixel_width; i_incr += incr) {
+		for (double j_incr = 0.0; j_incr < pixel_width; j_incr += incr) {
+
+			glm::dvec3 col(0,0,0);
+
+			double x = (double(i) + i_incr)/double(buffer_width);
+			double y = (double(j) + j_incr)/double(buffer_height);
+			col = trace(x, y);
+			if (glm::distance(initial_col, col) > aaThresh && depth < 5) {
+				// col = glm::dvec3(1, 1, 1);
+				col = aaPixel(i + i_incr, j + j_incr, depth + 1, pixel_width / samples);
+			} 
+			// else {
+				// col = glm::dvec3(0, 0, 0);
+			// }
+			final_col += col;
+		}
+	}
+
+	final_col /= double(samples * samples);
+	
+	return final_col;
 }
 
 bool RayTracer::checkRender()

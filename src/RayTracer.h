@@ -40,6 +40,8 @@ public:
 
 	void traceImage(int w, int h);
 	int aaImage();
+	glm::dvec3 aaPixel(double i, double j, int depth, double pixel_width);
+	
 	bool checkRender();
 	void waitRender();
 
