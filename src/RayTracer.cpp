@@ -253,6 +253,10 @@ void RayTracer::traceSetup(int w, int h)
 	scene->kdtree = new KdTree<Geometry>();
 	scene->kdtree->objects = scene->objects;
 	scene->kdtree->build(0);
+
+	for (auto &geo : scene->objects) {
+		geo->BuildKdTree();
+	}
 }
 
 /*

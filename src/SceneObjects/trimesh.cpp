@@ -70,8 +70,10 @@ const char* Trimesh::doubleCheck()
 }
 
 void Trimesh::BuildKdTree() {
+	kdtree = new KdTree<TrimeshFace>();
 	kdtree->objects = faces;
 	kdtree->build(0);
+	builtTree = true;
 }
 
 bool Trimesh::intersectLocal(ray& r, isect& i) const

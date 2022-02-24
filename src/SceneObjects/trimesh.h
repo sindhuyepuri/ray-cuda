@@ -41,7 +41,7 @@ public:
 	}
 
 	bool vertNorms;
-
+	bool builtTree;
 	bool intersectLocal(ray &r, isect &i) const;
 
 	~Trimesh();
