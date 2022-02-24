@@ -1,3 +1,18 @@
-1. Amelia Baumhart Leveille and Sindhu Yepuri
-2. After running the raycheck.py code, we seemed to get a bit of warnings on almost all of the tests. After looking at the diff, we saw some odd pics (very blue and pretty), but we never ran into any such color issues when testing in the GUI/Commandline. Dr. Vouga said the error might be randomness in unintialized memory, however the blue-ish pretty pictures only appeared in raycheck.py and the same color issue is present consistently in all the renders in raycheck. I also think that we didn't handle colored light as correctly as we should've. In the render with the cylinder and magenta light, we get the correct specular spot, but I think in the turtle render, there should be some additional color contribution. We attempted threading, but were unable to get std::thread to compile on our machines, so we would've liked to see more speedup.
-3. N/A
+1. 
+Amelia Baumhart Leveille and Sindhu Yepuri
+
+2. 
+I think we fixed a couple of bugs from Milestone 1. I'm not sure if we fixed this by the deadline (or submitted the correct iteration of our code), but we had some unintialized memory that was messing with how our renders were working, and although it made it have some pretty colors, it was a headache to debug.
+
+Our refraction through a cubemap looked reasonable, however I think our solution was a tad darker in shadows compared to the reference solution. I'm not sure how we can alter the exposure (allowing more light in?).
+
+We did not implement total internal reflection.
+
+3. 
+We implemented adaptive supersampling as our extra credit. There were 2 optimizations that we tried. One was to identify the pixels to be aliased. We found that we could utilize the same idea of subdividing pixels to compare pixels to their neighbors to identify possible edges that would need to be antialiased. This would've had a nice speedup, but we were having trouble identifying an appropriate threshold that we could use to identify the aliased pixels. A more obvious speed-up would be threading. 
+
+We have a file (dragon.png) that highlights all of the edges that we recurse on for the supersampling.
+
+We implemented a kd-tree that divided the space by the median minimum bounding box point along alternating axes. 
+
+We also implemented threading to try to speed up our tracePixel method. We created 16 threads to parallelize tracing each pixel. In combination with our kd-tree, this allowed us to render dragon.ray in about 3 seconds.
