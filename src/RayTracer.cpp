@@ -259,6 +259,26 @@ void RayTracer::traceSetup(int w, int h)
 	}
 }
 
+struct worker_args {
+	int start_height;
+	int end_height;
+	int width;
+	int id;
+	RayTracer* rt;
+};
+
+void* work(void* arguments) {
+	struct worker_args* args = (struct worker_args*)arguments;
+	int w = args->width;
+	int start_h = args->start_height;
+	int end_h = args->end_height;
+	for (int i = 0; i < w; i++) {
+		for (int j = start_h; j <= end_h; j++) {
+			args->rt->tracePixel(i, j);
+		}
+	}
+}
+
 /*
  * RayTracer::traceImage
  *
@@ -271,47 +291,29 @@ void RayTracer::traceSetup(int w, int h)
  */
 void RayTracer::traceImage(int w, int h)
 {
-	// Always call traceSetup before rendering anything.
 	traceSetup(w,h);
-	// vector container stores threads
-    // Looping every thread via for_each
-    // The 3rd argument assigns a task
-    // It tells the compiler we're using lambda ([])
-    // The lambda function takes its argument as a reference to a thread, t
-    // Then, joins one by one, and this works like barrier
-    // std::for_each(workers.begin(), workers.end(), [](std::thread &t) 
-    // {
-    //     t.join();
-    // });
 
-	for (int i = 0; i < w; i++) {
-		for (int j = 0; j < h; j++) {
-			tracePixel(i, j);
-		}
-	}
-	// std::cout << "trace image" << std::endl;
-	// std::vector<std::thread> workers;
-	// for (int id = 1; id <= 16; id++) {
-	// 	workers.push_back(std::thread([id, w, h, this] () {
-	// 		for (int i = 0; i < w/16; i++) {
-	// 			for (int j = 0; j < h; j++) {
-	// 				this->tracePixel(i*16+id, j);
-	// 			}
-	// 		}
-	// 	}));
+	// for (int i = 0; i < w; i++) {
+	// 	for (int j = 0; j < h; j++) {
+	// 		tracePixel(i, j);
+	// 	}
 	// }
-	// std::for_each(workers.begin(), workers.end(), [](std::thread &t) 
-    // {
-    //     t.join();
-    // });
-	// YOUR CODE HERE
-	// FIXME: Start one or more threads for ray tracing
-	//
-	// TIPS: Ideally, the traceImage should be executed asynchronously,
-	//       i.e. returns IMMEDIATELY after working threads are launched.
-	//
-	//       An asynchronous traceImage lets the GUI update your results
-	//       while rendering.
+	pthread_t* workers = new pthread_t[threads];
+
+	int incr = h / threads;
+	for (int i = 0; i < threads; i++) {
+		struct worker_args* args = new struct worker_args();
+		args->start_height = i * incr;
+		args->end_height = i * incr + incr - 1;
+		args->width = w;
+		args->id = i;
+		args->rt = this;
+		pthread_create(&workers[i], NULL, work, (void*)args);
+	}
+
+	for (int i = 0; i < threads; i++) {
+		pthread_join(workers[i], NULL);
+	}
 }
 
 std::vector<std::pair<int, int>> aliased_pixels;
