@@ -37,37 +37,43 @@ bool debugMode = true;
 // enter the main ray-tracing method, getting things started by plugging
 // in an initial ray weight of (0.0,0.0,0.0) and an initial recursion depth of 0.
 
-glm::dvec3 RayTracer::trace(double x, double y)
-{
-	// Clear out the ray cache in the scene for debugging purposes,
-	if (TraceUI::m_debug)
-	{
-		scene->clearIntersectCache();		
-	}
-	ray r(glm::dvec3(0,0,0), glm::dvec3(0,0,0), glm::dvec3(1,1,1), ray::VISIBILITY);
-	scene->getCamera().rayThrough(x,y,r);
-	double dummy;
-	glm::dvec3 ret = traceRay(r, glm::dvec3(1.0,1.0,1.0), traceUI->getDepth(), dummy);
-	ret = glm::clamp(ret, 0.0, 1.0);
-	return ret;
-}
+// glm::dvec3 RayTracer::trace(double x, double y)
+// {
+// 	// Clear out the ray cache in the scene for debugging purposes,
+// 	if (TraceUI::m_debug)
+// 	{
+// 		scene->clearIntersectCache();		
+// 	}
+// 	ray r(glm::dvec3(0,0,0), glm::dvec3(0,0,0), glm::dvec3(1,1,1), ray::VISIBILITY);
+// 	scene->getCamera().rayThrough(x,y,r);
+// 	double dummy;
+// 	glm::dvec3 ret = traceRay(r, glm::dvec3(1.0,1.0,1.0), traceUI->getDepth(), dummy);
+// 	ret = glm::clamp(ret, 0.0, 1.0);
+// 	return ret;
+// }
 
-glm::dvec3 RayTracer::tracePixel(int i, int j)
-{
+void RayTracer::tracePixel(int i, int j) {
+	// int i = threadIdx.x + blockIdx.x * blockDim.x
+	// int j = threadIdx.y + blockIdx.y * blockDim.y;
+	// if ((i >= max_x) || (j >= max_y)) return;
+	
 	glm::dvec3 col(0,0,0);
 
-	if( ! sceneLoaded() ) return col;
+	if( ! sceneLoaded() ) return;
 
 	double x = double(i)/double(buffer_width);
 	double y = double(j)/double(buffer_height);
 
 	unsigned char *pixel = buffer.data() + ( i + j * buffer_width ) * 3;
-	col = trace(x, y);
+	ray r(glm::dvec3(0,0,0), glm::dvec3(0,0,0), glm::dvec3(1,1,1), ray::VISIBILITY);
+	scene->getCamera().rayThrough(x,y,r);
+	double dummy;
+	col = traceRay(r, glm::dvec3(1.0,1.0,1.0), traceUI->getDepth(), dummy);
+	col = glm::clamp(col, 0.0, 1.0);
 
 	pixel[0] = (int)( 255.0 * col[0]);
 	pixel[1] = (int)( 255.0 * col[1]);
 	pixel[2] = (int)( 255.0 * col[2]);
-	return col;
 }
 
 #define VERBOSE 0
@@ -84,36 +90,18 @@ glm::dvec3 RayTracer::traceRay(ray& r, const glm::dvec3& thresh, int depth, doub
 #endif
 
 	if(depth >= 0 && scene->intersect(r, i)) {
-		// YOUR CODE HERE
-
-		// An intersection occurred!  We've got work to do.  For now,
-		// this code gets the material for the surface that was intersected,
-		// and asks that material to provide a color for the ray.
-
-		// This is a great place to insert code for recursive ray tracing.
-		// Instead of just returning the result of shade(), add some
-		// more steps: add in the contributions from reflected and refracted
-		// rays.
+		
 
 		const Material& m = i.getMaterial();
 		colorC = m.shade(scene.get(), r, i);
 
-		// add reflection contribution
-		// reflect the incoming ray across the normal
-		// make sure direction of reflected ray is outgoing
-		// call trace ray on new reflected ray until desired depth is achieved
-		// not sure what thresh and t are doing
 		if (depth > 0) {
 			glm::dvec3 w_in = r.getDirection();
 			glm::dvec3 n = i.getN();
 			glm::dvec3 reflect_vec(w_in - 2.0 * (glm::dot(w_in, n) * n));
 			ray reflected_ray(r.at(i.getT()), reflect_vec, glm::dvec3(1, 1, 1), ray::RayType::REFLECTION);
 			colorC += m.kr(i) * traceRay(reflected_ray, thresh, depth - 1, t); // what are thresh and t for?
-			// std::cout << "kr: " << m.kr(i) << std::endl;
 		}
-
-		// add refraction contribution
-		// if the material is not translucent, continue
 		glm::dvec3 normal = i.getN();
 		glm::dvec3 incident = r.getDirection();
 		double n_i;
@@ -139,21 +127,7 @@ glm::dvec3 RayTracer::traceRay(ray& r, const glm::dvec3& thresh, int depth, doub
 		}
 		
 	} else {
-		// No intersection.  This ray travels to infinity, so we color
-		// it according to the background color, which in this (simple) case
-		// is just black.
-		//
-		// FIXME: Add CubeMap support here.
-		// TIPS: CubeMap object can be fetched from traceUI->getCubeMap();
-		//       Check traceUI->cubeMap() to see if cubeMap is loaded
-		//       and enabled.
-		if (traceUI->cubeMap()) {
-			CubeMap* cubeMap = traceUI->getCubeMap();
-			colorC = cubeMap->getColor(r);
-			// std::cout << "cubemap" << std::endl;
-		} else {
-			colorC = glm::dvec3(0.0, 0.0, 0.0);
-		}
+		colorC = glm::dvec3(0.0, 0.0, 0.0);
 	}		
 #if VERBOSE
 	std::cerr << "== depth: " << depth+1 << " done, returning: " << colorC << std::endl;
@@ -292,119 +266,123 @@ void* work(void* arguments) {
 void RayTracer::traceImage(int w, int h)
 {
 	traceSetup(w,h);
+	int tx, ty = 8;
 
-	// for (int i = 0; i < w; i++) {
-	// 	for (int j = 0; j < h; j++) {
-	// 		tracePixel(i, j);
-	// 	}
-	// }
-	pthread_t* workers = new pthread_t[threads];
+	// dim3 blocks(w/tx + 1, h/ty + 1);
+	// dim3 threads(tx, ty);
 
-	int incr = h / threads;
-	for (int i = 0; i < threads; i++) {
-		struct worker_args* args = new struct worker_args();
-		args->start_height = i * incr;
-		args->end_height = i * incr + incr - 1;
-		args->width = w;
-		args->id = i;
-		args->rt = this;
-		pthread_create(&workers[i], NULL, work, (void*)args);
-	}
-
-	for (int i = 0; i < threads; i++) {
-		pthread_join(workers[i], NULL);
-	}
-}
-
-std::vector<std::pair<int, int>> aliased_pixels;
-
-double max_dist = DBL_MIN;
-
-bool RayTracer::findAliasedPixel(int i, int j) {
-	int num_pixels = 0;
-	unsigned char *curr_pixel = buffer.data() + ( i + j * buffer_width ) * 3;
-	glm::dvec3 curr_color(curr_pixel[0], curr_pixel[1], curr_pixel[2]);
-
-	glm::dvec3 avg_color(0.0, 0.0, 0.0);
-	for (int x = i - 1; x <= i + 1; x++) {
-		for (int y = j - 1; y <= j + 1; y++) {
-			if (x >= 0 && x < buffer_width && y >= 0 && y < buffer_height) {
-				num_pixels++;
-				unsigned char *pixel = buffer.data() + ( x + y * buffer_width ) * 3;
-				avg_color += glm::dvec3(pixel[0], pixel[1], pixel[2]);
-			}
+	for (int i = 0; i < w; i++) {
+		for (int j = 0; j < h; j++) {
+			tracePixel(i, j);
 		}
 	}
+	// pthread_t* workers = new pthread_t[threads];
 
-	avg_color = 1/((double)num_pixels) * avg_color;
+	// int incr = h / threads;
+	// for (int i = 0; i < threads; i++) {
+	// 	struct worker_args* args = new struct worker_args();
+	// 	args->start_height = i * incr;
+	// 	args->end_height = i * incr + incr - 1;
+	// 	args->width = w;
+	// 	args->id = i;
+	// 	args->rt = this;
+	// 	pthread_create(&workers[i], NULL, work, (void*)args);
+	// }
 
-	double dist = glm::distance(1/256.0 * curr_color, 1/256.0 * avg_color);
-	if (dist > max_dist) {
-		max_dist = dist;
-	}
-	std::cout << dist << std::endl;
-	if (glm::distance(1/256.0 * curr_color, 1/256.0 * avg_color) > .1) {
-		std::cout << dist << std::endl;
-		std::pair <int, int> pixel (i, j);
-		aliased_pixels.push_back(pixel);
-		return true;
-	}
-	return false;
+	// for (int i = 0; i < threads; i++) {
+	// 	pthread_join(workers[i], NULL);
+	// }
 }
+
+// std::vector<std::pair<int, int>> aliased_pixels;
+
+// double max_dist = DBL_MIN;
+
+// bool RayTracer::findAliasedPixel(int i, int j) {
+// 	int num_pixels = 0;
+// 	unsigned char *curr_pixel = buffer.data() + ( i + j * buffer_width ) * 3;
+// 	glm::dvec3 curr_color(curr_pixel[0], curr_pixel[1], curr_pixel[2]);
+
+// 	glm::dvec3 avg_color(0.0, 0.0, 0.0);
+// 	for (int x = i - 1; x <= i + 1; x++) {
+// 		for (int y = j - 1; y <= j + 1; y++) {
+// 			if (x >= 0 && x < buffer_width && y >= 0 && y < buffer_height) {
+// 				num_pixels++;
+// 				unsigned char *pixel = buffer.data() + ( x + y * buffer_width ) * 3;
+// 				avg_color += glm::dvec3(pixel[0], pixel[1], pixel[2]);
+// 			}
+// 		}
+// 	}
+
+// 	avg_color = 1/((double)num_pixels) * avg_color;
+
+// 	double dist = glm::distance(1/256.0 * curr_color, 1/256.0 * avg_color);
+// 	if (dist > max_dist) {
+// 		max_dist = dist;
+// 	}
+// 	std::cout << dist << std::endl;
+// 	if (glm::distance(1/256.0 * curr_color, 1/256.0 * avg_color) > .1) {
+// 		std::cout << dist << std::endl;
+// 		std::pair <int, int> pixel (i, j);
+// 		aliased_pixels.push_back(pixel);
+// 		return true;
+// 	}
+// 	return false;
+// }
 
 int RayTracer::aaImage()
 {
-	// YOUR CODE HERE
-	// FIXME: Implement Anti-aliasing here
-	//
-	// TIP: samples and aaThresh have been synchronized with TraceUI by
-	//      RayTracer::traceSetup() function
-	for (int i = 0; i < buffer_width; i++) {
-		for (int j = 0; j < buffer_height; j++) {
-			if(findAliasedPixel(i, j)) {
-				setPixel(i, j, glm::dvec3(1, 1, 1));
-			} else {
-				setPixel(i, j, glm::dvec3(0, 0, 0));
-			}
-		}
-	}
-	// std::cout << max_dist << std::endl;
-	// for (std::pair<int, int> &element : aliased_pixels) {
-	// 	setPixel(element.first, element.second, aaPixel(element.first, element.second, 0, 1));
-	// }
+// 	// YOUR CODE HERE
+// 	// FIXME: Implement Anti-aliasing here
+// 	//
+// 	// TIP: samples and aaThresh have been synchronized with TraceUI by
+// 	//      RayTracer::traceSetup() function
+// 	for (int i = 0; i < buffer_width; i++) {
+// 		for (int j = 0; j < buffer_height; j++) {
+// 			if(findAliasedPixel(i, j)) {
+// 				setPixel(i, j, glm::dvec3(1, 1, 1));
+// 			} else {
+// 				setPixel(i, j, glm::dvec3(0, 0, 0));
+// 			}
+// 		}
+// 	}
+// 	// std::cout << max_dist << std::endl;
+// 	// for (std::pair<int, int> &element : aliased_pixels) {
+// 	// 	setPixel(element.first, element.second, aaPixel(element.first, element.second, 0, 1));
+// 	// }
 
 	return 0;
 }
 
-// recurses until the difference between the original color and the antialiased color is less than thresh
-glm::dvec3 RayTracer::aaPixel (double i, double j, int depth, double pixel_width) {
-	glm::dvec3 initial_col = trace(i / double(buffer_width), j / double(buffer_height));
-	glm::dvec3 final_col(0, 0, 0);
-	double incr = pixel_width/double(samples);
+// // recurses until the difference between the original color and the antialiased color is less than thresh
+// glm::dvec3 RayTracer::aaPixel (double i, double j, int depth, double pixel_width) {
+// 	glm::dvec3 initial_col = trace(i / double(buffer_width), j / double(buffer_height));
+// 	glm::dvec3 final_col(0, 0, 0);
+// 	double incr = pixel_width/double(samples);
 
-	for (double i_incr = 0.0; i_incr < pixel_width; i_incr += incr) {
-		for (double j_incr = 0.0; j_incr < pixel_width; j_incr += incr) {
+// 	for (double i_incr = 0.0; i_incr < pixel_width; i_incr += incr) {
+// 		for (double j_incr = 0.0; j_incr < pixel_width; j_incr += incr) {
 
-			glm::dvec3 col(0,0,0);
+// 			glm::dvec3 col(0,0,0);
 
-			double x = (double(i) + i_incr)/double(buffer_width);
-			double y = (double(j) + j_incr)/double(buffer_height);
-			col = trace(x, y);
-			if (glm::distance(initial_col, col) > aaThresh && depth < 5) {
-				// col = glm::dvec3(1, 1, 1);
-				col = aaPixel(i + i_incr, j + j_incr, depth + 1, pixel_width / samples);
-			} 
-			// else {
-				// col = glm::dvec3(0, 0, 0);
-			// }
-			final_col += col;
-		}
-	}
+// 			double x = (double(i) + i_incr)/double(buffer_width);
+// 			double y = (double(j) + j_incr)/double(buffer_height);
+// 			col = trace(x, y);
+// 			if (glm::distance(initial_col, col) > aaThresh && depth < 5) {
+// 				// col = glm::dvec3(1, 1, 1);
+// 				col = aaPixel(i + i_incr, j + j_incr, depth + 1, pixel_width / samples);
+// 			} 
+// 			// else {
+// 				// col = glm::dvec3(0, 0, 0);
+// 			// }
+// 			final_col += col;
+// 		}
+// 	}
 
-	final_col /= double(samples * samples);
+// 	final_col /= double(samples * samples);
 	
-	return final_col;
-}
+// 	return final_col;
+// }
 
 bool RayTracer::checkRender()
 {
