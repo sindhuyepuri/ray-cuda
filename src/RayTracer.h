@@ -40,8 +40,8 @@ public:
 
 	void traceImage(int w, int h);
 	int aaImage();
-	glm::dvec3 aaPixel(double i, double j, int depth, double pixel_width);
-	bool findAliasedPixel(int i, int j);
+	// glm::dvec3 aaPixel(double i, double j, int depth, double pixel_width);
+	// bool findAliasedPixel(int i, int j);
 
 	bool checkRender();
 	void waitRender();
@@ -59,7 +59,7 @@ public:
 	bool stopTrace;
 
 private:
-	glm::dvec3 trace(double x, double y);
+	// glm::dvec3 trace(double x, double y);
 
 	std::vector<unsigned char> buffer;
 	int buffer_width, buffer_height;

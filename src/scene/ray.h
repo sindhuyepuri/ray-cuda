@@ -68,42 +68,42 @@ public:
 
 	~isect() { }
 
-	isect& operator=(const isect& other)
+	 isect& operator=(const isect& other)
 	{
 		copyFromOther(other);
 		return *this;
 	}
 
-	void setObject(const SceneObject* o) { obj = o; }
+	 void setObject(const SceneObject* o) { obj = o; }
 
 	// Get/Set Time of flight
-	void setT(double tt) { t = tt; }
-	double getT() const { return t; }
+	 void setT(double tt) { t = tt; }
+	 double getT() const { return t; }
 	// Get/Set surface normal at this intersectivon.
-	void setN(const glm::dvec3& n) { N = n; }
-	glm::dvec3 getN() const { return N; }
+	 void setN(const glm::dvec3& n) { N = n; }
+	 glm::dvec3 getN() const { return N; }
 
-	void setMaterial(const Material& m)
+	 void setMaterial(const Material& m)
 	{
 		if (material)
 			*material = m;
 		else
 			material.reset(new Material(m));
 	}
-	void setUVCoordinates(const glm::dvec2& coords)
+	 void setUVCoordinates(const glm::dvec2& coords)
 	{
 		uvCoordinates = coords;
 	}
-	glm::dvec2 getUVCoordinates() const { return uvCoordinates; }
-	void setBary(const glm::dvec3& weights) { bary = weights; }
-	void setBary(const double alpha, const double beta, const double gamma)
+	 glm::dvec2 getUVCoordinates() const { return uvCoordinates; }
+	 void setBary(const glm::dvec3& weights) { bary = weights; }
+	 void setBary(const double alpha, const double beta, const double gamma)
 	{
 		setBary(glm::dvec3(alpha, beta, gamma));
 	}
-	const Material& getMaterial() const;
+	 const Material& getMaterial() const;
 
 private:
-	void copyFromOther(const isect& other)
+	 void copyFromOther(const isect& other)
 	{
 		if (this == &other)
 			return ;
