@@ -52,14 +52,14 @@ bool debugMode = true;
 // 	return ret;
 // }
 
-void RayTracer::tracePixel(int max_x, int max_y) {
-	int i = threadIdx.x + blockIdx.x * blockDim.x
-	int j = threadIdx.y + blockIdx.y * blockDim.y;
-	if ((i >= max_x) || (j >= max_y)) return;
+void RayTracer::tracePixel(int i, int j) {
+	// int i = threadIdx.x + blockIdx.x * blockDim.x
+	// int j = threadIdx.y + blockIdx.y * blockDim.y;
+	// if ((i >= max_x) || (j >= max_y)) return;
 	
 	glm::dvec3 col(0,0,0);
 
-	if( ! sceneLoaded() ) return col;
+	if( ! sceneLoaded() ) return;
 
 	double x = double(i)/double(buffer_width);
 	double y = double(j)/double(buffer_height);
@@ -268,8 +268,8 @@ void RayTracer::traceImage(int w, int h)
 	traceSetup(w,h);
 	int tx, ty = 8;
 
-	dim3 blocks(w/tx + 1, h/ty + 1);
-	dim3 threads(tx, ty);
+	// dim3 blocks(w/tx + 1, h/ty + 1);
+	// dim3 threads(tx, ty);
 
 	for (int i = 0; i < w; i++) {
 		for (int j = 0; j < h; j++) {

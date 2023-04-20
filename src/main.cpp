@@ -4,7 +4,8 @@
 
 #include "RayTracer.h"
 #include "ui/CommandLineUI.h"
-
+#include <iostream>
+ 
 using namespace std;
 
 RayTracer* theRayTracer;
@@ -18,9 +19,11 @@ int TraceUI::rayCount[MAX_THREADS];
 //
 // Graphics mode will be substantially slower than text mode because of
 // event handling overhead.
+
 int main(int argc, char** argv)
 {
 	// std::cout << "graphics mode" << std::endl;
+
 	if (argc != 1) {
 		// text mode
 		traceUI = new CommandLineUI(argc, argv);
