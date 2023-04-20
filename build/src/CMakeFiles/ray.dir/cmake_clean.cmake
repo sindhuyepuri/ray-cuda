@@ -39,8 +39,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/ray.dir/scene/camera.cpp.o.d"
   "CMakeFiles/ray.dir/scene/cubeMap.cpp.o"
   "CMakeFiles/ray.dir/scene/cubeMap.cpp.o.d"
-  "CMakeFiles/ray.dir/scene/light.cpp.o"
-  "CMakeFiles/ray.dir/scene/light.cpp.o.d"
   "CMakeFiles/ray.dir/scene/material.cpp.o"
   "CMakeFiles/ray.dir/scene/material.cpp.o.d"
   "CMakeFiles/ray.dir/scene/ray.cpp.o"

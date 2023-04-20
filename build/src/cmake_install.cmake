@@ -1,4 +1,4 @@
-# Install script for directory: /Users/sindhu/Downloads/ray/src
+# Install script for directory: /Users/sindhu/ray-cuda/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
