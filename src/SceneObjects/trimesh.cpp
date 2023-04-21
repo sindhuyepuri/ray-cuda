@@ -72,6 +72,7 @@ const char* Trimesh::doubleCheck()
 void Trimesh::BuildKdTree() {
 	kdtree = new KdTree<TrimeshFace>();
 	kdtree->objects = faces;
+	cout << faces.size() << endl;
 	kdtree->build(0);
 	builtTree = true;
 }

@@ -227,7 +227,7 @@ void RayTracer::traceSetup(int w, int h)
 	scene->kdtree = new KdTree<Geometry>();
 	scene->kdtree->objects = scene->objects;
 	scene->kdtree->build(0);
-
+	cout << scene->objects.size() << endl;
 	for (auto &geo : scene->objects) {
 		geo->BuildKdTree();
 	}
@@ -266,32 +266,32 @@ void* work(void* arguments) {
 void RayTracer::traceImage(int w, int h)
 {
 	traceSetup(w,h);
-	int tx, ty = 8;
+	// int tx, ty = 8;
 
 	// dim3 blocks(w/tx + 1, h/ty + 1);
 	// dim3 threads(tx, ty);
 
-	for (int i = 0; i < w; i++) {
-		for (int j = 0; j < h; j++) {
-			tracePixel(i, j);
-		}
+	// for (int i = 0; i < w; i++) {
+	// 	for (int j = 0; j < h; j++) {
+	// 		tracePixel(i, j);
+	// 	}
+	// }
+	pthread_t* workers = new pthread_t[threads];
+
+	int incr = h / threads;
+	for (int i = 0; i < threads; i++) {
+		struct worker_args* args = new struct worker_args();
+		args->start_height = i * incr;
+		args->end_height = i * incr + incr - 1;
+		args->width = w;
+		args->id = i;
+		args->rt = this;
+		pthread_create(&workers[i], NULL, work, (void*)args);
 	}
-	// pthread_t* workers = new pthread_t[threads];
 
-	// int incr = h / threads;
-	// for (int i = 0; i < threads; i++) {
-	// 	struct worker_args* args = new struct worker_args();
-	// 	args->start_height = i * incr;
-	// 	args->end_height = i * incr + incr - 1;
-	// 	args->width = w;
-	// 	args->id = i;
-	// 	args->rt = this;
-	// 	pthread_create(&workers[i], NULL, work, (void*)args);
-	// }
-
-	// for (int i = 0; i < threads; i++) {
-	// 	pthread_join(workers[i], NULL);
-	// }
+	for (int i = 0; i < threads; i++) {
+		pthread_join(workers[i], NULL);
+	}
 }
 
 // std::vector<std::pair<int, int>> aliased_pixels;

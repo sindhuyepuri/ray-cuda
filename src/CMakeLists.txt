@@ -2,8 +2,6 @@ SET(pwd ${CMAKE_CURRENT_LIST_DIR})
 
 UNSET(src)
 
-enable_language(CUDA)
-
 # Uncomment the following lines to explicitly set files to compile from
 # CMakeLists.sources
 #IF (EXISTS CMakeLists.sources)

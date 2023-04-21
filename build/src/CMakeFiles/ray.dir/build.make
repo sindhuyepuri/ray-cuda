@@ -251,10 +251,24 @@ src/CMakeFiles/ray.dir/scene/cubeMap.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ray.dir/scene/cubeMap.cpp.s"
 	cd /Users/sindhu/ray-cuda/build/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/sindhu/ray-cuda/src/scene/cubeMap.cpp -o CMakeFiles/ray.dir/scene/cubeMap.cpp.s
 
+src/CMakeFiles/ray.dir/scene/light.cpp.o: src/CMakeFiles/ray.dir/flags.make
+src/CMakeFiles/ray.dir/scene/light.cpp.o: ../src/scene/light.cpp
+src/CMakeFiles/ray.dir/scene/light.cpp.o: src/CMakeFiles/ray.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sindhu/ray-cuda/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object src/CMakeFiles/ray.dir/scene/light.cpp.o"
+	cd /Users/sindhu/ray-cuda/build/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/ray.dir/scene/light.cpp.o -MF CMakeFiles/ray.dir/scene/light.cpp.o.d -o CMakeFiles/ray.dir/scene/light.cpp.o -c /Users/sindhu/ray-cuda/src/scene/light.cpp
+
+src/CMakeFiles/ray.dir/scene/light.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ray.dir/scene/light.cpp.i"
+	cd /Users/sindhu/ray-cuda/build/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/sindhu/ray-cuda/src/scene/light.cpp > CMakeFiles/ray.dir/scene/light.cpp.i
+
+src/CMakeFiles/ray.dir/scene/light.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ray.dir/scene/light.cpp.s"
+	cd /Users/sindhu/ray-cuda/build/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/sindhu/ray-cuda/src/scene/light.cpp -o CMakeFiles/ray.dir/scene/light.cpp.s
+
 src/CMakeFiles/ray.dir/scene/material.cpp.o: src/CMakeFiles/ray.dir/flags.make
 src/CMakeFiles/ray.dir/scene/material.cpp.o: ../src/scene/material.cpp
 src/CMakeFiles/ray.dir/scene/material.cpp.o: src/CMakeFiles/ray.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sindhu/ray-cuda/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object src/CMakeFiles/ray.dir/scene/material.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sindhu/ray-cuda/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object src/CMakeFiles/ray.dir/scene/material.cpp.o"
 	cd /Users/sindhu/ray-cuda/build/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/ray.dir/scene/material.cpp.o -MF CMakeFiles/ray.dir/scene/material.cpp.o.d -o CMakeFiles/ray.dir/scene/material.cpp.o -c /Users/sindhu/ray-cuda/src/scene/material.cpp
 
 src/CMakeFiles/ray.dir/scene/material.cpp.i: cmake_force
@@ -268,7 +282,7 @@ src/CMakeFiles/ray.dir/scene/material.cpp.s: cmake_force
 src/CMakeFiles/ray.dir/scene/ray.cpp.o: src/CMakeFiles/ray.dir/flags.make
 src/CMakeFiles/ray.dir/scene/ray.cpp.o: ../src/scene/ray.cpp
 src/CMakeFiles/ray.dir/scene/ray.cpp.o: src/CMakeFiles/ray.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sindhu/ray-cuda/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object src/CMakeFiles/ray.dir/scene/ray.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sindhu/ray-cuda/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object src/CMakeFiles/ray.dir/scene/ray.cpp.o"
 	cd /Users/sindhu/ray-cuda/build/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/ray.dir/scene/ray.cpp.o -MF CMakeFiles/ray.dir/scene/ray.cpp.o.d -o CMakeFiles/ray.dir/scene/ray.cpp.o -c /Users/sindhu/ray-cuda/src/scene/ray.cpp
 
 src/CMakeFiles/ray.dir/scene/ray.cpp.i: cmake_force
@@ -282,7 +296,7 @@ src/CMakeFiles/ray.dir/scene/ray.cpp.s: cmake_force
 src/CMakeFiles/ray.dir/scene/scene.cpp.o: src/CMakeFiles/ray.dir/flags.make
 src/CMakeFiles/ray.dir/scene/scene.cpp.o: ../src/scene/scene.cpp
 src/CMakeFiles/ray.dir/scene/scene.cpp.o: src/CMakeFiles/ray.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sindhu/ray-cuda/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object src/CMakeFiles/ray.dir/scene/scene.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sindhu/ray-cuda/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object src/CMakeFiles/ray.dir/scene/scene.cpp.o"
 	cd /Users/sindhu/ray-cuda/build/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/ray.dir/scene/scene.cpp.o -MF CMakeFiles/ray.dir/scene/scene.cpp.o.d -o CMakeFiles/ray.dir/scene/scene.cpp.o -c /Users/sindhu/ray-cuda/src/scene/scene.cpp
 
 src/CMakeFiles/ray.dir/scene/scene.cpp.i: cmake_force
@@ -296,7 +310,7 @@ src/CMakeFiles/ray.dir/scene/scene.cpp.s: cmake_force
 src/CMakeFiles/ray.dir/SceneObjects/Box.cpp.o: src/CMakeFiles/ray.dir/flags.make
 src/CMakeFiles/ray.dir/SceneObjects/Box.cpp.o: ../src/SceneObjects/Box.cpp
 src/CMakeFiles/ray.dir/SceneObjects/Box.cpp.o: src/CMakeFiles/ray.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sindhu/ray-cuda/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object src/CMakeFiles/ray.dir/SceneObjects/Box.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sindhu/ray-cuda/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object src/CMakeFiles/ray.dir/SceneObjects/Box.cpp.o"
 	cd /Users/sindhu/ray-cuda/build/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/ray.dir/SceneObjects/Box.cpp.o -MF CMakeFiles/ray.dir/SceneObjects/Box.cpp.o.d -o CMakeFiles/ray.dir/SceneObjects/Box.cpp.o -c /Users/sindhu/ray-cuda/src/SceneObjects/Box.cpp
 
 src/CMakeFiles/ray.dir/SceneObjects/Box.cpp.i: cmake_force
@@ -310,7 +324,7 @@ src/CMakeFiles/ray.dir/SceneObjects/Box.cpp.s: cmake_force
 src/CMakeFiles/ray.dir/SceneObjects/Cone.cpp.o: src/CMakeFiles/ray.dir/flags.make
 src/CMakeFiles/ray.dir/SceneObjects/Cone.cpp.o: ../src/SceneObjects/Cone.cpp
 src/CMakeFiles/ray.dir/SceneObjects/Cone.cpp.o: src/CMakeFiles/ray.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sindhu/ray-cuda/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object src/CMakeFiles/ray.dir/SceneObjects/Cone.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sindhu/ray-cuda/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object src/CMakeFiles/ray.dir/SceneObjects/Cone.cpp.o"
 	cd /Users/sindhu/ray-cuda/build/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/ray.dir/SceneObjects/Cone.cpp.o -MF CMakeFiles/ray.dir/SceneObjects/Cone.cpp.o.d -o CMakeFiles/ray.dir/SceneObjects/Cone.cpp.o -c /Users/sindhu/ray-cuda/src/SceneObjects/Cone.cpp
 
 src/CMakeFiles/ray.dir/SceneObjects/Cone.cpp.i: cmake_force
@@ -324,7 +338,7 @@ src/CMakeFiles/ray.dir/SceneObjects/Cone.cpp.s: cmake_force
 src/CMakeFiles/ray.dir/SceneObjects/Cylinder.cpp.o: src/CMakeFiles/ray.dir/flags.make
 src/CMakeFiles/ray.dir/SceneObjects/Cylinder.cpp.o: ../src/SceneObjects/Cylinder.cpp
 src/CMakeFiles/ray.dir/SceneObjects/Cylinder.cpp.o: src/CMakeFiles/ray.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sindhu/ray-cuda/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object src/CMakeFiles/ray.dir/SceneObjects/Cylinder.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sindhu/ray-cuda/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object src/CMakeFiles/ray.dir/SceneObjects/Cylinder.cpp.o"
 	cd /Users/sindhu/ray-cuda/build/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/ray.dir/SceneObjects/Cylinder.cpp.o -MF CMakeFiles/ray.dir/SceneObjects/Cylinder.cpp.o.d -o CMakeFiles/ray.dir/SceneObjects/Cylinder.cpp.o -c /Users/sindhu/ray-cuda/src/SceneObjects/Cylinder.cpp
 
 src/CMakeFiles/ray.dir/SceneObjects/Cylinder.cpp.i: cmake_force
@@ -338,7 +352,7 @@ src/CMakeFiles/ray.dir/SceneObjects/Cylinder.cpp.s: cmake_force
 src/CMakeFiles/ray.dir/SceneObjects/Sphere.cpp.o: src/CMakeFiles/ray.dir/flags.make
 src/CMakeFiles/ray.dir/SceneObjects/Sphere.cpp.o: ../src/SceneObjects/Sphere.cpp
 src/CMakeFiles/ray.dir/SceneObjects/Sphere.cpp.o: src/CMakeFiles/ray.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sindhu/ray-cuda/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object src/CMakeFiles/ray.dir/SceneObjects/Sphere.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sindhu/ray-cuda/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object src/CMakeFiles/ray.dir/SceneObjects/Sphere.cpp.o"
 	cd /Users/sindhu/ray-cuda/build/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/ray.dir/SceneObjects/Sphere.cpp.o -MF CMakeFiles/ray.dir/SceneObjects/Sphere.cpp.o.d -o CMakeFiles/ray.dir/SceneObjects/Sphere.cpp.o -c /Users/sindhu/ray-cuda/src/SceneObjects/Sphere.cpp
 
 src/CMakeFiles/ray.dir/SceneObjects/Sphere.cpp.i: cmake_force
@@ -352,7 +366,7 @@ src/CMakeFiles/ray.dir/SceneObjects/Sphere.cpp.s: cmake_force
 src/CMakeFiles/ray.dir/SceneObjects/Square.cpp.o: src/CMakeFiles/ray.dir/flags.make
 src/CMakeFiles/ray.dir/SceneObjects/Square.cpp.o: ../src/SceneObjects/Square.cpp
 src/CMakeFiles/ray.dir/SceneObjects/Square.cpp.o: src/CMakeFiles/ray.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sindhu/ray-cuda/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object src/CMakeFiles/ray.dir/SceneObjects/Square.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sindhu/ray-cuda/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object src/CMakeFiles/ray.dir/SceneObjects/Square.cpp.o"
 	cd /Users/sindhu/ray-cuda/build/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/ray.dir/SceneObjects/Square.cpp.o -MF CMakeFiles/ray.dir/SceneObjects/Square.cpp.o.d -o CMakeFiles/ray.dir/SceneObjects/Square.cpp.o -c /Users/sindhu/ray-cuda/src/SceneObjects/Square.cpp
 
 src/CMakeFiles/ray.dir/SceneObjects/Square.cpp.i: cmake_force
@@ -366,7 +380,7 @@ src/CMakeFiles/ray.dir/SceneObjects/Square.cpp.s: cmake_force
 src/CMakeFiles/ray.dir/SceneObjects/trimesh.cpp.o: src/CMakeFiles/ray.dir/flags.make
 src/CMakeFiles/ray.dir/SceneObjects/trimesh.cpp.o: ../src/SceneObjects/trimesh.cpp
 src/CMakeFiles/ray.dir/SceneObjects/trimesh.cpp.o: src/CMakeFiles/ray.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sindhu/ray-cuda/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object src/CMakeFiles/ray.dir/SceneObjects/trimesh.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sindhu/ray-cuda/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object src/CMakeFiles/ray.dir/SceneObjects/trimesh.cpp.o"
 	cd /Users/sindhu/ray-cuda/build/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/ray.dir/SceneObjects/trimesh.cpp.o -MF CMakeFiles/ray.dir/SceneObjects/trimesh.cpp.o.d -o CMakeFiles/ray.dir/SceneObjects/trimesh.cpp.o -c /Users/sindhu/ray-cuda/src/SceneObjects/trimesh.cpp
 
 src/CMakeFiles/ray.dir/SceneObjects/trimesh.cpp.i: cmake_force
@@ -380,7 +394,7 @@ src/CMakeFiles/ray.dir/SceneObjects/trimesh.cpp.s: cmake_force
 src/CMakeFiles/ray.dir/ui/CommandLineUI.cpp.o: src/CMakeFiles/ray.dir/flags.make
 src/CMakeFiles/ray.dir/ui/CommandLineUI.cpp.o: ../src/ui/CommandLineUI.cpp
 src/CMakeFiles/ray.dir/ui/CommandLineUI.cpp.o: src/CMakeFiles/ray.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sindhu/ray-cuda/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object src/CMakeFiles/ray.dir/ui/CommandLineUI.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sindhu/ray-cuda/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object src/CMakeFiles/ray.dir/ui/CommandLineUI.cpp.o"
 	cd /Users/sindhu/ray-cuda/build/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/ray.dir/ui/CommandLineUI.cpp.o -MF CMakeFiles/ray.dir/ui/CommandLineUI.cpp.o.d -o CMakeFiles/ray.dir/ui/CommandLineUI.cpp.o -c /Users/sindhu/ray-cuda/src/ui/CommandLineUI.cpp
 
 src/CMakeFiles/ray.dir/ui/CommandLineUI.cpp.i: cmake_force
@@ -394,7 +408,7 @@ src/CMakeFiles/ray.dir/ui/CommandLineUI.cpp.s: cmake_force
 src/CMakeFiles/ray.dir/ui/CubeMapChooser.cxx.o: src/CMakeFiles/ray.dir/flags.make
 src/CMakeFiles/ray.dir/ui/CubeMapChooser.cxx.o: ../src/ui/CubeMapChooser.cxx
 src/CMakeFiles/ray.dir/ui/CubeMapChooser.cxx.o: src/CMakeFiles/ray.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sindhu/ray-cuda/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object src/CMakeFiles/ray.dir/ui/CubeMapChooser.cxx.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sindhu/ray-cuda/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object src/CMakeFiles/ray.dir/ui/CubeMapChooser.cxx.o"
 	cd /Users/sindhu/ray-cuda/build/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/ray.dir/ui/CubeMapChooser.cxx.o -MF CMakeFiles/ray.dir/ui/CubeMapChooser.cxx.o.d -o CMakeFiles/ray.dir/ui/CubeMapChooser.cxx.o -c /Users/sindhu/ray-cuda/src/ui/CubeMapChooser.cxx
 
 src/CMakeFiles/ray.dir/ui/CubeMapChooser.cxx.i: cmake_force
@@ -408,7 +422,7 @@ src/CMakeFiles/ray.dir/ui/CubeMapChooser.cxx.s: cmake_force
 src/CMakeFiles/ray.dir/ui/GraphicalUI.cpp.o: src/CMakeFiles/ray.dir/flags.make
 src/CMakeFiles/ray.dir/ui/GraphicalUI.cpp.o: ../src/ui/GraphicalUI.cpp
 src/CMakeFiles/ray.dir/ui/GraphicalUI.cpp.o: src/CMakeFiles/ray.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sindhu/ray-cuda/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object src/CMakeFiles/ray.dir/ui/GraphicalUI.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sindhu/ray-cuda/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object src/CMakeFiles/ray.dir/ui/GraphicalUI.cpp.o"
 	cd /Users/sindhu/ray-cuda/build/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/ray.dir/ui/GraphicalUI.cpp.o -MF CMakeFiles/ray.dir/ui/GraphicalUI.cpp.o.d -o CMakeFiles/ray.dir/ui/GraphicalUI.cpp.o -c /Users/sindhu/ray-cuda/src/ui/GraphicalUI.cpp
 
 src/CMakeFiles/ray.dir/ui/GraphicalUI.cpp.i: cmake_force
@@ -422,7 +436,7 @@ src/CMakeFiles/ray.dir/ui/GraphicalUI.cpp.s: cmake_force
 src/CMakeFiles/ray.dir/ui/ModelerCamera.cpp.o: src/CMakeFiles/ray.dir/flags.make
 src/CMakeFiles/ray.dir/ui/ModelerCamera.cpp.o: ../src/ui/ModelerCamera.cpp
 src/CMakeFiles/ray.dir/ui/ModelerCamera.cpp.o: src/CMakeFiles/ray.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sindhu/ray-cuda/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object src/CMakeFiles/ray.dir/ui/ModelerCamera.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sindhu/ray-cuda/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object src/CMakeFiles/ray.dir/ui/ModelerCamera.cpp.o"
 	cd /Users/sindhu/ray-cuda/build/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/ray.dir/ui/ModelerCamera.cpp.o -MF CMakeFiles/ray.dir/ui/ModelerCamera.cpp.o.d -o CMakeFiles/ray.dir/ui/ModelerCamera.cpp.o -c /Users/sindhu/ray-cuda/src/ui/ModelerCamera.cpp
 
 src/CMakeFiles/ray.dir/ui/ModelerCamera.cpp.i: cmake_force
@@ -436,7 +450,7 @@ src/CMakeFiles/ray.dir/ui/ModelerCamera.cpp.s: cmake_force
 src/CMakeFiles/ray.dir/ui/TraceGLWindow.cpp.o: src/CMakeFiles/ray.dir/flags.make
 src/CMakeFiles/ray.dir/ui/TraceGLWindow.cpp.o: ../src/ui/TraceGLWindow.cpp
 src/CMakeFiles/ray.dir/ui/TraceGLWindow.cpp.o: src/CMakeFiles/ray.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sindhu/ray-cuda/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object src/CMakeFiles/ray.dir/ui/TraceGLWindow.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sindhu/ray-cuda/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object src/CMakeFiles/ray.dir/ui/TraceGLWindow.cpp.o"
 	cd /Users/sindhu/ray-cuda/build/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/ray.dir/ui/TraceGLWindow.cpp.o -MF CMakeFiles/ray.dir/ui/TraceGLWindow.cpp.o.d -o CMakeFiles/ray.dir/ui/TraceGLWindow.cpp.o -c /Users/sindhu/ray-cuda/src/ui/TraceGLWindow.cpp
 
 src/CMakeFiles/ray.dir/ui/TraceGLWindow.cpp.i: cmake_force
@@ -450,7 +464,7 @@ src/CMakeFiles/ray.dir/ui/TraceGLWindow.cpp.s: cmake_force
 src/CMakeFiles/ray.dir/ui/TraceUI.cc.o: src/CMakeFiles/ray.dir/flags.make
 src/CMakeFiles/ray.dir/ui/TraceUI.cc.o: ../src/ui/TraceUI.cc
 src/CMakeFiles/ray.dir/ui/TraceUI.cc.o: src/CMakeFiles/ray.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sindhu/ray-cuda/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object src/CMakeFiles/ray.dir/ui/TraceUI.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sindhu/ray-cuda/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object src/CMakeFiles/ray.dir/ui/TraceUI.cc.o"
 	cd /Users/sindhu/ray-cuda/build/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/ray.dir/ui/TraceUI.cc.o -MF CMakeFiles/ray.dir/ui/TraceUI.cc.o.d -o CMakeFiles/ray.dir/ui/TraceUI.cc.o -c /Users/sindhu/ray-cuda/src/ui/TraceUI.cc
 
 src/CMakeFiles/ray.dir/ui/TraceUI.cc.i: cmake_force
@@ -464,7 +478,7 @@ src/CMakeFiles/ray.dir/ui/TraceUI.cc.s: cmake_force
 src/CMakeFiles/ray.dir/ui/debuggingView.cpp.o: src/CMakeFiles/ray.dir/flags.make
 src/CMakeFiles/ray.dir/ui/debuggingView.cpp.o: ../src/ui/debuggingView.cpp
 src/CMakeFiles/ray.dir/ui/debuggingView.cpp.o: src/CMakeFiles/ray.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sindhu/ray-cuda/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object src/CMakeFiles/ray.dir/ui/debuggingView.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sindhu/ray-cuda/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object src/CMakeFiles/ray.dir/ui/debuggingView.cpp.o"
 	cd /Users/sindhu/ray-cuda/build/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/ray.dir/ui/debuggingView.cpp.o -MF CMakeFiles/ray.dir/ui/debuggingView.cpp.o.d -o CMakeFiles/ray.dir/ui/debuggingView.cpp.o -c /Users/sindhu/ray-cuda/src/ui/debuggingView.cpp
 
 src/CMakeFiles/ray.dir/ui/debuggingView.cpp.i: cmake_force
@@ -478,7 +492,7 @@ src/CMakeFiles/ray.dir/ui/debuggingView.cpp.s: cmake_force
 src/CMakeFiles/ray.dir/ui/debuggingWindow.cxx.o: src/CMakeFiles/ray.dir/flags.make
 src/CMakeFiles/ray.dir/ui/debuggingWindow.cxx.o: ../src/ui/debuggingWindow.cxx
 src/CMakeFiles/ray.dir/ui/debuggingWindow.cxx.o: src/CMakeFiles/ray.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sindhu/ray-cuda/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object src/CMakeFiles/ray.dir/ui/debuggingWindow.cxx.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sindhu/ray-cuda/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building CXX object src/CMakeFiles/ray.dir/ui/debuggingWindow.cxx.o"
 	cd /Users/sindhu/ray-cuda/build/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/ray.dir/ui/debuggingWindow.cxx.o -MF CMakeFiles/ray.dir/ui/debuggingWindow.cxx.o.d -o CMakeFiles/ray.dir/ui/debuggingWindow.cxx.o -c /Users/sindhu/ray-cuda/src/ui/debuggingWindow.cxx
 
 src/CMakeFiles/ray.dir/ui/debuggingWindow.cxx.i: cmake_force
@@ -492,7 +506,7 @@ src/CMakeFiles/ray.dir/ui/debuggingWindow.cxx.s: cmake_force
 src/CMakeFiles/ray.dir/ui/glObjects.cpp.o: src/CMakeFiles/ray.dir/flags.make
 src/CMakeFiles/ray.dir/ui/glObjects.cpp.o: ../src/ui/glObjects.cpp
 src/CMakeFiles/ray.dir/ui/glObjects.cpp.o: src/CMakeFiles/ray.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sindhu/ray-cuda/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building CXX object src/CMakeFiles/ray.dir/ui/glObjects.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/sindhu/ray-cuda/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building CXX object src/CMakeFiles/ray.dir/ui/glObjects.cpp.o"
 	cd /Users/sindhu/ray-cuda/build/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/ray.dir/ui/glObjects.cpp.o -MF CMakeFiles/ray.dir/ui/glObjects.cpp.o.d -o CMakeFiles/ray.dir/ui/glObjects.cpp.o -c /Users/sindhu/ray-cuda/src/ui/glObjects.cpp
 
 src/CMakeFiles/ray.dir/ui/glObjects.cpp.i: cmake_force
@@ -518,6 +532,7 @@ ray_OBJECTS = \
 "CMakeFiles/ray.dir/scene/bbox.cc.o" \
 "CMakeFiles/ray.dir/scene/camera.cpp.o" \
 "CMakeFiles/ray.dir/scene/cubeMap.cpp.o" \
+"CMakeFiles/ray.dir/scene/light.cpp.o" \
 "CMakeFiles/ray.dir/scene/material.cpp.o" \
 "CMakeFiles/ray.dir/scene/ray.cpp.o" \
 "CMakeFiles/ray.dir/scene/scene.cpp.o" \
@@ -553,6 +568,7 @@ bin/ray: src/CMakeFiles/ray.dir/parser/Tokenizer.cpp.o
 bin/ray: src/CMakeFiles/ray.dir/scene/bbox.cc.o
 bin/ray: src/CMakeFiles/ray.dir/scene/camera.cpp.o
 bin/ray: src/CMakeFiles/ray.dir/scene/cubeMap.cpp.o
+bin/ray: src/CMakeFiles/ray.dir/scene/light.cpp.o
 bin/ray: src/CMakeFiles/ray.dir/scene/material.cpp.o
 bin/ray: src/CMakeFiles/ray.dir/scene/ray.cpp.o
 bin/ray: src/CMakeFiles/ray.dir/scene/scene.cpp.o
@@ -587,7 +603,7 @@ bin/ray: /opt/homebrew/lib/libfltk.dylib
 bin/ray: /opt/homebrew/lib/libjpeg.dylib
 bin/ray: /opt/homebrew/lib/libpng.dylib
 bin/ray: src/CMakeFiles/ray.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/sindhu/ray-cuda/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Linking CXX executable ../bin/ray"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/sindhu/ray-cuda/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Linking CXX executable ../bin/ray"
 	cd /Users/sindhu/ray-cuda/build/src && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ray.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

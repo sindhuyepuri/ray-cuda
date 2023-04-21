@@ -27,6 +27,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/Users/sindhu/ray-cuda/src/scene/bbox.cc" "src/CMakeFiles/ray.dir/scene/bbox.cc.o" "gcc" "src/CMakeFiles/ray.dir/scene/bbox.cc.o.d"
   "/Users/sindhu/ray-cuda/src/scene/camera.cpp" "src/CMakeFiles/ray.dir/scene/camera.cpp.o" "gcc" "src/CMakeFiles/ray.dir/scene/camera.cpp.o.d"
   "/Users/sindhu/ray-cuda/src/scene/cubeMap.cpp" "src/CMakeFiles/ray.dir/scene/cubeMap.cpp.o" "gcc" "src/CMakeFiles/ray.dir/scene/cubeMap.cpp.o.d"
+  "/Users/sindhu/ray-cuda/src/scene/light.cpp" "src/CMakeFiles/ray.dir/scene/light.cpp.o" "gcc" "src/CMakeFiles/ray.dir/scene/light.cpp.o.d"
   "/Users/sindhu/ray-cuda/src/scene/material.cpp" "src/CMakeFiles/ray.dir/scene/material.cpp.o" "gcc" "src/CMakeFiles/ray.dir/scene/material.cpp.o.d"
   "/Users/sindhu/ray-cuda/src/scene/ray.cpp" "src/CMakeFiles/ray.dir/scene/ray.cpp.o" "gcc" "src/CMakeFiles/ray.dir/scene/ray.cpp.o.d"
   "/Users/sindhu/ray-cuda/src/scene/scene.cpp" "src/CMakeFiles/ray.dir/scene/scene.cpp.o" "gcc" "src/CMakeFiles/ray.dir/scene/scene.cpp.o.d"

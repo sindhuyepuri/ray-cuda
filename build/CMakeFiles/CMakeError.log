@@ -36,3 +36,5 @@ make: *** [cmTC_078a2/fast] Error 2
 
 
 
+Checking whether the CUDA compiler is NVIDIA using "" did not match "nvcc: NVIDIA \(R\) Cuda compiler driver":
+Checking whether the CUDA compiler is Clang using "" did not match "(clang version)":

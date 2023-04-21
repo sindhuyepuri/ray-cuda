@@ -586,6 +586,30 @@ scene/cubeMap.cpp.s:
 	cd /Users/sindhu/ray-cuda/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ray.dir/build.make src/CMakeFiles/ray.dir/scene/cubeMap.cpp.s
 .PHONY : scene/cubeMap.cpp.s
 
+scene/light.o: scene/light.cpp.o
+.PHONY : scene/light.o
+
+# target to build an object file
+scene/light.cpp.o:
+	cd /Users/sindhu/ray-cuda/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ray.dir/build.make src/CMakeFiles/ray.dir/scene/light.cpp.o
+.PHONY : scene/light.cpp.o
+
+scene/light.i: scene/light.cpp.i
+.PHONY : scene/light.i
+
+# target to preprocess a source file
+scene/light.cpp.i:
+	cd /Users/sindhu/ray-cuda/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ray.dir/build.make src/CMakeFiles/ray.dir/scene/light.cpp.i
+.PHONY : scene/light.cpp.i
+
+scene/light.s: scene/light.cpp.s
+.PHONY : scene/light.s
+
+# target to generate assembly for a file
+scene/light.cpp.s:
+	cd /Users/sindhu/ray-cuda/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ray.dir/build.make src/CMakeFiles/ray.dir/scene/light.cpp.s
+.PHONY : scene/light.cpp.s
+
 scene/material.o: scene/material.cpp.o
 .PHONY : scene/material.o
 
@@ -940,6 +964,9 @@ help:
 	@echo "... scene/cubeMap.o"
 	@echo "... scene/cubeMap.i"
 	@echo "... scene/cubeMap.s"
+	@echo "... scene/light.o"
+	@echo "... scene/light.i"
+	@echo "... scene/light.s"
 	@echo "... scene/material.o"
 	@echo "... scene/material.i"
 	@echo "... scene/material.s"
